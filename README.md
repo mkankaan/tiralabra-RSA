@@ -6,7 +6,7 @@ Python implementation of RSA
 - [Installation (Linux/MacOS)](#installation)
 
 **Weekly reports**
-- [Week 1](/docs/week1)
+- [Week 1](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week1.md)
 
 
 # <a name="installation"></a> Installation (Linux/MacOS)

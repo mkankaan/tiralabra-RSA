@@ -9,7 +9,7 @@ Degree programme: Bachelor of Science (Tietojenkäsittelytieteen kandidaatti)
 
 RSA encryption is based on a key pair with a shared modulus, a product of two prime numbers. The core problem is finding two primes that are sufficiently large so that they cannot be easily factored from their product. Several algorithms exist for finding prime numbers, notably the Miller–Rabin primality test and the Sieve of Eratosthenes, which will be implemented in this project. The difficulty of factoring large numbers is what makes RSA secure. Given the keys, encryption and decryption can be done with simple modular exponentiation.
 
-The project is coded with Python and the documented in English.
+The application runs on the command line. The project is coded with Python and documented in English.
 
 I can peer review projects coded with Java, C, C#, Rust, Javacsript and Typescript (and in Finnish).
 

@@ -1,8 +1,8 @@
 # Week 1 report
 
-Spent time choosing a topic, setting up the project repository and researching RSA and Miller-Rabin. I learned what makes RSA a strong encryption tool and 
+Spent time choosing a topic, setting up the project repository and researching RSA and Miller-Rabin. I learned that the difficulty of factoring large numbers into primes is what makes RSA a strong encryption tool.
 
-What I'm unsure about: I haven't decided what would be the best way to implement the application (a GUI or a simple command line application). I'm also trying to think of an easy way to manage the keys, since there are two keys (public and private) and each key has two components (the modulo and the exponent). It would be easier to distribute each key to the user as a single string also from a testing standpoint, especially since the user doesn't necessarily need to distinguish between the components of the keys.
+What I'm unsure about: The sources I read didn't make it clear how the keys are constructed, since each key has two components (the modulus and the exponent). From a testing standpoint it would be easiest to distribute each key to the user as a single string, but the program needs to know how to split it into the modulus and exponent.
 
 Depending on the feedback, next week I will probably start by implementing the key generation and a user interface.
 
