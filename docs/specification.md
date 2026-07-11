@@ -1,7 +1,5 @@
 # Requirements specification
 
-## About the project
-
 
 
 ## Functionality
@@ -27,8 +25,15 @@ For the modular multiplicative inverse (finding *d* for the private key)
 
 (This might change, these were just some of the algorithms I came across in my research.)
 
-## Time/space complexity
+## Time complexity
 
+In my research I found that Miller-Rabin runs in polynomial time at worst, making it efficient.
+
+The Sieve of Eratosthenes has a time complexity of O(n log (log n)) when finding all primes up to n. This stems from the fact that we're looping through a list of integers 2...n, and each round the amount of numbers left to be checked is divided by the next prime. The time complexity turns out to be:
+
+n/2 + n/3 + n/5 + n/7 + ... = n(1/2 + 1/3 + 1/5 + 1/7 + ... ) = n log(log n) where log(log n) is the sum of the reciprocals of primes up to n. This makes the Sieve of Eratosthenes faster than O(n log n) and thus also efficient, granted that we only need to iterate until floor(sqrt(n)) because if a number doesn't have factors greater than its square root then it's certainly prime.
+
+The time complexity of the Extended Euclidean algorithm is similar to the Euclidean algorithm, which runs in polynomial time.
 
 ## Sources
 
