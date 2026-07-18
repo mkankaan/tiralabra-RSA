@@ -11,13 +11,13 @@ class UI:
             user_input = input("[g]enerate keys, [e]ncrypt or [d]ecrypt. Press any other key to quit.\n")
 
             match user_input.lower():
-                case 'g':
+                case "g":
                     print("generate keys")
                     BITS = 1024
                     prime = prime_generator.generate_prime(BITS)
-                case 'e':
+                case "e":
                     print("encrypt")
-                case 'd':
+                case "d":
                     print("decrypt")
                 case _:
                     end = True
