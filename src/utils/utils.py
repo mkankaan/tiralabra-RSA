@@ -1,6 +1,7 @@
 from math import floor, sqrt
+from random import randrange
 
-# n = upper bound for the list of primes
+# n = upper bound for the list of small primes
 def sieve_of_eratosthenes(n):
     if n < 2:
         return
@@ -13,13 +14,48 @@ def sieve_of_eratosthenes(n):
         if primes[i]:
             for j in range(pow(i, 2), n+1, i):
                 primes[j] = False
+
+
+    ###### for testing
+    primes_list = []
+
+    for i in range(len(primes)):
+        if primes[i]:
+            primes_list.append(i)
+
+    print("small primes length: ", len(primes_list))
+    ######
+
     return primes
 
 
 # n = prime candidate, n > 2
-# k = accuracy
-# return: False (composite) or True (probably prime)
-def miller_rabin(n, k):
+# k = accuracy (the number of rounds)
+# Return: False (composite) or True (probably prime)
+def miller_rabin(n, k, s, d):
+    witnesses = set()
 
+    # Loop k times
+    for i in range(k):
+        a = randrange(2, n-1) # Witness
+
+        while a in witnesses:
+            a = randrange(2, n-1)
+        witnesses.add(a)
+
+        test_witness(a, s, d, n)
+    
+    #print("witnesses: ", witnesses)
+    
+    return True
+
+def test_witness(a, s, d, n):
+    x = pow(a, d)%n
+    print("x: ", x)
+
+    if abs(x) == 1:
+        return True
+
+    # loop s times
+    
     return
-
