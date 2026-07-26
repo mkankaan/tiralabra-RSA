@@ -8,6 +8,7 @@ Python implementation of RSA
 **Weekly reports**
 - [Week 1](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week1.md)
 - [Week 2](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week2.md)
+- [Week 3](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week3.md)
 
 
 # <a name="installation"></a> Installation (Linux/MacOS)
