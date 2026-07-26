@@ -18,15 +18,21 @@ def sieve_of_eratosthenes(n):
 
     ###### for testing
     primes_list = []
-
     for i in range(len(primes)):
         if primes[i]:
             primes_list.append(i)
-
-    print("small primes length: ", len(primes_list))
+    #print("small primes length: ", len(primes_list))
     ######
 
     return primes
+
+
+# Helper function that takes a boolean list corresponding to primality of index as argument
+# Returns a list of primes up to n as integers
+def small_primes_as_integers(n):
+    primes_boolean = sieve_of_eratosthenes(n)
+    primes_int = [i for i in range(n) if primes_boolean[i]]
+    return primes_int
 
 
 # n = prime candidate, n > 2
