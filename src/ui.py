@@ -1,4 +1,4 @@
-from utils import utils, prime_generator
+from utils import prime_generator
 
 class UI:
     def __init__(self):

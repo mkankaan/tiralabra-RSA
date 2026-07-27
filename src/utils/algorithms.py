@@ -1,6 +1,5 @@
 from math import floor, sqrt
 from random import randrange
-from prime_generator import factor_powers_of_two
 
 
 # n = upper bound for the list of small primes
@@ -61,3 +60,25 @@ def test_witness(a, s, d, n):
 
 def nontrivial_square_root(y, x, n):
     return y == 1 and x != 1 and x != n-1
+
+
+# Return a tuple (s, d) such that n-1 = (2^s)*d
+def factor_powers_of_two(n):
+    s = 1
+
+    while ((n-1)/pow(2,s)).is_integer():
+        s += 1
+
+    s -= 1
+    d = int((n-1)/pow(2,s))
+    return (s, d)
+
+
+# n = a prime candidate
+# list = a list of numbers (small primes)
+# Return True if n is divisible by any number in the list, otherwise False
+def is_divisible(p, numbers):
+    for n in numbers:
+        if p%n == 0:
+            return True
+    return False

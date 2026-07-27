@@ -1,5 +1,5 @@
 import random
-from utils.utils import miller_rabin, small_primes_as_integers
+from utils.algorithms import miller_rabin, small_primes_as_integers, is_divisible
 
 
 def generate_two_primes():
@@ -10,18 +10,6 @@ def generate_prime(bits):
     p = random.getrandbits(bits)
     print(p, "is prime?", is_prime(p))
     return p
-
-
-# Return a tuple (s, d) such that n-1 = (2^s)*d
-def factor_powers_of_two(n):
-    s = 1
-
-    while ((n-1)/pow(2,s)).is_integer():
-        s += 1
-
-    s -= 1
-    d = int((n-1)/pow(2,s))
-    return (s, d)
 
 
 # n = prime candidate
@@ -35,13 +23,3 @@ def is_prime(p):
 
     k = 40 # Miller-Rabin rounds
     return miller_rabin(p, k)
-
-
-# n = a prime candidate
-# list = a list of numbers (small primes)
-# Return True if n is divisible by any number in the list, otherwise False
-def is_divisible(p, numbers):
-    for n in numbers:
-        if p%n == 0:
-            return True
-    return False
