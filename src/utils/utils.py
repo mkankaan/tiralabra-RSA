@@ -1,5 +1,6 @@
 from math import floor, sqrt
 from random import randrange
+from prime_generator import factor_powers_of_two
 
 
 # n = upper bound for the list of small primes
@@ -31,7 +32,9 @@ def small_primes_as_integers(n):
 # n = prime candidate, n > 2
 # k = level of accuracy (the number of rounds)
 # Return: False (composite) or True (probably prime)
-def miller_rabin(n, k, s, d):
+def miller_rabin(n, k):
+    (s, d) = factor_powers_of_two(n)
+
     # Loop k times
     for i in range(k):
         a = randrange(2, n-1) # Witness
@@ -40,6 +43,7 @@ def miller_rabin(n, k, s, d):
             return False
 
     return True
+
 
 def test_witness(a, s, d, n):
     x = pow(a, d, n) # (a^d) % n

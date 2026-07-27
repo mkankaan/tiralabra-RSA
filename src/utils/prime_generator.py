@@ -8,8 +8,7 @@ def generate_two_primes():
 
 def generate_prime(bits):
     p = random.getrandbits(bits)
-    (s, d) = factor_powers_of_two(p)
-    print(p, "is prime?", is_prime(p, s, d))
+    print(p, "is prime?", is_prime(p))
     return p
 
 
@@ -26,7 +25,7 @@ def factor_powers_of_two(n):
 
 
 # n = prime candidate
-def is_prime(p, s, d):
+def is_prime(p):
     MAX_SMALL_PRIME = 4000 # There are approx 500 primes < 4000
     small_primes = small_primes_as_integers(MAX_SMALL_PRIME) #The Sieve of Eratosthenes
 
@@ -35,14 +34,14 @@ def is_prime(p, s, d):
         return False
 
     k = 40 # Miller-Rabin rounds
-    return miller_rabin(p, k, s, d)
+    return miller_rabin(p, k)
 
 
 # n = a prime candidate
 # list = a list of numbers (small primes)
 # Return True if n is divisible by any number in the list, otherwise False
-def is_divisible(n, list):
-    for p in list:
-        if n%p == 0:
+def is_divisible(p, numbers):
+    for n in numbers:
+        if p%n == 0:
             return True
     return False
