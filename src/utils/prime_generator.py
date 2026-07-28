@@ -8,7 +8,9 @@ def generate_two_primes():
 
 def generate_prime(bits):
     p = random.getrandbits(bits)
-    print(p, "is prime?", is_prime(p))
+
+    while not is_prime(p):
+        p = random.getrandbits(bits)
     return p
 
 

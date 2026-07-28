@@ -24,7 +24,6 @@ def sieve_of_eratosthenes(n):
 def small_primes_as_integers(n):
     primes_boolean = sieve_of_eratosthenes(n)
     primes_int = [i for i in range(n) if primes_boolean[i]]
-    print("# of small primes:", len(primes_int))
     return primes_int
 
 
@@ -50,11 +49,12 @@ def test_witness(a, s, d, n):
     for i in range(s):
         y = pow(x, 2, n) # x^2 % n
 
+        # Check for nontrivial square root of 1 modulo n
         if nontrivial_square_root(y, x, n):
             return False
         x = y
 
-    # n wasn't proven to be composite, so it's likely prime
+    # n wasn't found to be composite so it could be prime
     return True
 
 
@@ -62,7 +62,7 @@ def nontrivial_square_root(y, x, n):
     return y == 1 and x != 1 and x != n-1
 
 
-# Return a tuple (s, d) such that n-1 = (2^s)*d
+# Return a tuple (s, d) such that n-1 = (2^s)*d where d is odd
 def factor_powers_of_two(n):
     s = 1
 
