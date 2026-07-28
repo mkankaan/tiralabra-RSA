@@ -70,8 +70,7 @@ def factor_powers_of_two(n):
         s += 1
 
     s -= 1
-    d = int((n-1)/pow(2,s))
-    return (s, d)
+    return (s, int((n-1)/pow(2,s)))
 
 
 # n = a prime candidate
