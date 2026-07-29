@@ -12,11 +12,36 @@ def miller_rabin(n, k):
     # Generate a random witness and test if common divisors are found, repeat k times
     for i in range(k):
         a = randrange(2, n-1) # Witness
+        
+        # For any given 1 < a < n-1, n is a strong probable prime if
+        # one of the conditions is true:
+        # 1) a^d = 1 (mod n)
+        # 2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
 
-        # If at least one witness shows that n is composite, return False
-        if is_witness(a, s, d, n):
-            return False
+        # Check condition 1)
+        x = pow(a, d, n)
 
+        if x == 1 or x == n-1:
+            # a is not a factor of n, continue to the next witness
+            continue
+
+        # Check condition 2)
+        # Keep squaring x and taking mod n up to s times
+        for r in range(s):
+            y = pow(x, 2, n) # x^2 mod n
+
+            if y == -1:
+                return True # Prime
+
+            if y == 1 and x != 1 and x != n-1:
+                return False # Composite
+
+            x = y
+
+        if y != 1:
+            return False # Composite
+
+    # n isn't composite, likely prime
     return True
 
 
@@ -30,38 +55,3 @@ def factor_powers_of_two(n):
 
     s -= 1
     return (s, int((n-1)/pow(2,s)))
-
-
-# a is a witness for n if it proves that n is composite
-# Return True if n is composite, otherwise False
-def is_witness(a, s, d, n):
-
-    # For any given 1 < a < n-1, n is a strong probable prime if
-    # one of the conditions is true:
-    # 1) a^d = 1 (mod n)
-    # 2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
-
-    # Check condition 1)
-    # If the remainder of a^d divided by n is 1, that means a is not a factor of n
-    x = pow(a, d, n)
-
-    if x == 1:
-        return False # Probable prime to base a
-
-    # Check condition 2)
-    # Keep squaring x and taking mod n up to s times
-    for r in range(s):
-        y = pow(x, 2, n) # x^2 mod n
-
-        # Check for nontrivial square root of 1 mod n
-        if nontrivial_square_root(y, x, n):
-            return True # Composite
-
-        x = y
-            
-    # n isn't  composite, probable prime
-    return False
-
-
-def nontrivial_square_root(y, x, n):
-    return y == 1 and x != 1 and x != n-1
