@@ -54,3 +54,7 @@ The time complexity of the Extended Euclidean algorithm is similar to the Euclid
 - [RSA cryptosystem (Wikipedia)](https://en.wikipedia.org/wiki/RSA_cryptosystem)
 - [Miller-Rabin primality test (Wikipedia)](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
 - [The Use of Miller-Rabin in Testing Prime Numbers in the Rsa Algorithm to Secure Files](https://ioinformatic.org/index.php/JAIEA/article/view/1685/1168)
+- [Miller-Rabin Primality Test (YouTube)](https://www.youtube.com/watch?v=qdylJqXCDGs)
+- [How to Implement the Miller-Rabin Primality Test (YouTube)](https://www.youtube.com/watch?v=-BWTS_1Nxao)
+- [Modular arithmetic (Wikipedia)](https://en.wikipedia.org/wiki/Modular_arithmetic)
+- [The Miller-Rabin Test](https://kconrad.math.uconn.edu/blurbs/ugradnumthy/millerrabin.pdf)
