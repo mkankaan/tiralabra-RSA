@@ -49,9 +49,12 @@ def miller_rabin(n, k):
 # Return a tuple (s, d) such that n-1 = (2^s)*d, where s, d > 0 and d is odd
 def factor_powers_of_two(n):
     s = 1
+    result = n >> 1 # Right bit shift (division by 2)
+    last_digit = result % 10
 
-    while ((n-1)/pow(2,s)).is_integer():
+    while last_digit % 2 == 0:
         s += 1
+        result = n >> s
+        last_digit = result % 10
 
-    s -= 1
-    return (s, int((n-1)/pow(2,s)))
+    return (s, n >> s)
