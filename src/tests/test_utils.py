@@ -1,40 +1,42 @@
 import unittest
-from utils.miller_rabin import factor_powers_of_two
+from utils.utils import mod_inverse
 
 class TestUtils(unittest.TestCase):
     def setUp(self):
-        self.numbers = [58303, 82459, 71037, 43337, 85451, 12557, 46609, 681547, 876263, 528897, 13, 41,
-                           73580281023602955967]
+        self.test_inputs = [(3, 11),
+                            (10, 17),
+                            (138533449, 69249218),
+                            (2007956869, 501966760),
+                            (1127126929, 93921300)]
+
+        self.correct_results = [4, 12, 14188841, 183778989, 86113069]
+
+        self.not_coprimes = [(6,20), (15589, 7361), (168760, 152874), (24240096, 10612959)]
         
-        self.correct_pairs = [(1, 29151),
-                            (1, 41229),
-                            (2, 17759), 
-                            (3, 5417),
-                            (1, 42725),
-                            (2, 3139),
-                            (4, 2913),
-                            (1, 340773),
-                            (1, 438131),
-                            (9, 1033),
-                            (2, 3),
-                            (3, 5),
-                            (1, 36790140511801477983)]
+
+    def test_mod_inverse_returns_correct_result(self):
+        for i in range(len(self.test_inputs)):
+            (n, m) = self.test_inputs[i]
+            result = mod_inverse(n, m)
+            self.assertEqual(result, self.correct_results[i])
 
 
-    def test_factor_powers_of_two_returns_correct_pair(self):
-        for i in range(len(self.numbers)):
-            (s, d) = self.correct_pairs[i]
-            self.assertEqual(factor_powers_of_two(self.numbers[i]), (s, d))
-            self.assertEqual(self.numbers[i]-1, pow(2, s)*d)
+    def test_mod_inverse_remainder_is_one(self):
+        for i in range(len(self.test_inputs)):
+            (n, m) = self.test_inputs[i]
+            result = mod_inverse(n, m)
+            self.assertEqual((n*result)%m, 1)
 
 
-    def test_factor_powers_of_two_results_match(self):
-            for i in range(len(self.numbers)):
-                (s, d) = self.correct_pairs[i]
-                self.assertEqual(self.numbers[i]-1, pow(2, s)*d)
+    def test_mod_inverse_returns_none_if_arguments_not_coprime(self):
+        for (n, m) in self.not_coprimes:
+            self.assertIsNone(mod_inverse(n, m))
+        
 
+    def test_mod_inverse_result_in_correct_range(self):
+        for i in range(len(self.test_inputs)):
+            (n, m) = self.test_inputs[i]
+            result = mod_inverse(n, m)
+            self.assertGreater(result, 0)
+            self.assertLess(result, m)
 
-    def test_factor_powers_of_two_d_always_odd(self):
-        for i in range(301, 500, 2):
-            d = factor_powers_of_two(i)[1]
-            self.assertNotEqual(d%2, 0)
