@@ -58,3 +58,7 @@ The time complexity of the Extended Euclidean algorithm is similar to the Euclid
 - [How to Implement the Miller-Rabin Primality Test (YouTube)](https://www.youtube.com/watch?v=-BWTS_1Nxao)
 - [Modular arithmetic (Wikipedia)](https://en.wikipedia.org/wiki/Modular_arithmetic)
 - [The Miller-Rabin Test](https://kconrad.math.uconn.edu/blurbs/ugradnumthy/millerrabin.pdf)
+- [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
+- [GCD, Bezout, and Modular Inverses | The Extended Euclidean Algorithm (YouTube)](https://www.youtube.com/watch?v=YZfPcvbwwvI)
+- [Extended Euclidean Algorithm](https://cp-algorithms.com/algebra/extended-euclid-algorithm.html)
+- [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
