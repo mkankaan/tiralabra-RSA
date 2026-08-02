@@ -6,6 +6,7 @@ Note for peer reviews: currently the program has the functionality to generate k
 
 - [Specifications document](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/specification.md)
 - [Installation (Linux/MacOS)](#installation)
+- [Testing](#testing)
 
 **Weekly reports**
 - [Week 1](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week1.md)
@@ -28,4 +29,17 @@ $ poetry install
 Start the application:
 ```
 $ poetry run python3 src/index.py
+```
+
+# <a name="testing"></a> Testing
+
+Run tests with:
+
+```
+$ poetry run pytest
+```
+
+View coverage report:
+```
+$ poetry run coverage report -m
 ```
