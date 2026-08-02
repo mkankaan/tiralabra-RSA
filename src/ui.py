@@ -1,5 +1,5 @@
-from utils import prime_generator
-from utils.utils import lcm, mod_inverse
+from prime_generator import generate_two_primes
+from utils import lcm, mod_inverse
 from key import Key
 from math import ceil
 
@@ -17,7 +17,7 @@ class UI:
                 case "g":
                     #BITS = 1024
                     BITS = 16 # for testing
-                    (p, q) = prime_generator.generate_two_primes(BITS)
+                    (p, q) = generate_two_primes(BITS)
 
                     # for testing
                     #p = 39511

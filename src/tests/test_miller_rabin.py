@@ -1,5 +1,5 @@
 import unittest
-from utils.miller_rabin import factor_powers_of_two
+from miller_rabin import factor_powers_of_two
 
 class TestUtils(unittest.TestCase):
     def setUp(self):

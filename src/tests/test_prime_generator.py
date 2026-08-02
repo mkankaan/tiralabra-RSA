@@ -1,5 +1,5 @@
 import unittest
-from utils.prime_generator import is_prime
+from prime_generator import is_prime
 
 class TestPrimeGenerator(unittest.TestCase):
     def setUp(self):

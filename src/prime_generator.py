@@ -1,6 +1,6 @@
 import random
-from utils.miller_rabin import miller_rabin
-from utils.sieve_of_eratosthenes import small_primes_as_integers, is_divisible
+from miller_rabin import miller_rabin
+from sieve_of_eratosthenes import small_primes_as_integers, is_divisible
 
 
 def generate_two_primes(bits):

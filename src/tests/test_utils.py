@@ -1,5 +1,5 @@
 import unittest
-from utils.utils import mod_inverse
+from utils import mod_inverse
 
 class TestUtils(unittest.TestCase):
     def setUp(self):
