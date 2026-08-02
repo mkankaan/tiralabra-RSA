@@ -16,4 +16,16 @@ Note for peer reviews: currently the program has the functionality to generate k
 
 # <a name="installation"></a> Installation (Linux/MacOS)
 
-TBA
+
+The project requires Python >= 3.12 and Poetry >= 2.0. Run the following commands in the root of the project folder. Replace "python3" if Python is installed under a different name.
+
+Install dependencies:
+
+```
+$ poetry install
+```
+
+Start the application:
+```
+$ poetry run python3 src/index.py
+```
