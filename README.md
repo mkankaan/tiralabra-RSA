@@ -42,7 +42,7 @@ In the application menu, select **g** to generate keys, **e** to encrypt or **d*
 
 # <a name="testing"></a> Testing
 
-Run tests with:
+Tests can be run with:
 
 ```
 $ poetry run pytest
