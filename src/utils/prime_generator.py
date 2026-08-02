@@ -3,8 +3,14 @@ from utils.miller_rabin import miller_rabin
 from utils.sieve_of_eratosthenes import small_primes_as_integers, is_divisible
 
 
-def generate_two_primes():
-    return
+def generate_two_primes(bits):
+    p = generate_prime(bits)
+    q = generate_prime(bits)
+
+    while p == q:
+        q = generate_prime(bits)
+
+    return (p, q)
 
 
 def generate_prime(bits):

@@ -1,12 +1,11 @@
 from utils import prime_generator
-from utils.utils import gcd, lcm, mod_inverse
+from utils.utils import lcm, mod_inverse
 from key import Key
 
 
 class UI:
     def __init__(self):
-        # Upper bound for the smallest prime we want to check with the sieve
-        self.MAX_SMALL_PRIME = 4000
+        pass
 
     def start(self):
         end = False
@@ -16,33 +15,24 @@ class UI:
             match user_input.lower():
                 case "g":
                     #BITS = 1024
-                    BITS = 16
+                    BITS = 16 # for testing
                     (p, q) = prime_generator.generate_two_primes(BITS)
-
-                    #print("p:", p)
-                    #print("q:", q)
 
                     # for testing
                     p = 39511
                     q = 5701
 
                     n = p*q
-
-                    #print("n:", n)
-
-                    g = gcd(p-1, q-1)
-                    print("gcd:", g)
-
-                    l = lcm(p-1, q-1)
-                    print("lcm:", l)
+                    least_common_multiple = lcm(p-1, q-1)
 
                     e = 65537 # Common public exponent
+                    d = mod_inverse(e, least_common_multiple)
 
-                    pubic_key = Key(n, e)
-                    print("public key modulus:", pubic_key.modulus, " exp:", pubic_key.exponent)
+                    public_key = Key(n, e)
+                    private_key = Key(n, d)
 
-                    d = mod_inverse(n, l) # mod_inverse(e, lcm)
-                    print("d:", d)
+                    print("pub key:", public_key)
+                    print("priv key:", private_key)
                 case "e":
                     print("encrypt")
                 case "d":

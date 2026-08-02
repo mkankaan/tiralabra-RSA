@@ -5,7 +5,6 @@ from random import randrange
 # k = level of accuracy (the number of witnesses tested against)
 # Return: False (composite) or True (probably prime)
 def miller_rabin(n, k):
-
     # n-1 = (2^s)*d
     (s, d) = factor_powers_of_two(n)
 
@@ -30,18 +29,15 @@ def miller_rabin(n, k):
         for r in range(s):
             y = pow(x, 2, n) # x^2 mod n
 
-            if y == -1:
-                return True # Prime
-
             if y == 1 and x != 1 and x != n-1:
                 return False # Composite
 
             x = y
-
+        
         if y != 1:
             return False # Composite
 
-    # n isn't composite, likely prime
+    # n wasn't proven to be composite, probable prime
     return True
 
 
@@ -50,11 +46,9 @@ def miller_rabin(n, k):
 def factor_powers_of_two(n):
     s = 1
     result = n >> 1 # Right bit shift (division by 2)
-    last_digit = result % 10
 
-    while last_digit % 2 == 0:
+    while result % 2 == 0:
         s += 1
         result = n >> s
-        last_digit = result % 10
 
     return (s, n >> s)

@@ -25,12 +25,11 @@ def mod_inverse(n, m):
     #if m == 1:
     #    return 0
 
-    m_0 = m
+    m_0 = m # Initial value of the modulus
     (x, y) = (1, 0)
 
     while n > 1:
-        print()
-        q = n//m # quotient
+        q = n//m # Quotient
 
         # swap (n, m) -> (m, n%m)
         t = m # temp
