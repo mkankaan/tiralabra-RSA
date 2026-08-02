@@ -30,23 +30,10 @@ def mod_inverse(n, m):
 
     while n > 1:
         q = n//m # Quotient
-
-        # swap (n, m) -> (m, n%m)
-        t = m # temp
-        m = n%m
-        n = t
-
-
-        # swap (x, y) -> (y, x%y)
-        t = y # temp
-        y = x-q*y
-        x = t
-
-        #(n, m) = (m, n%m)
-        #(x, y) = (y, x-q*y)
+        (n, m) = (m, n%m)
+        (x, y) = (y, x-q*y)
 
     if x < 0:
         x += m_0
 
     return x
-
