@@ -31,7 +31,6 @@ class UI:
         n = p*q
         least_common_multiple = lcm(p-1, q-1)
 
-        #e = 65537
         public_key = PublicKey(n)
 
         d = mod_inverse(public_key.exponent, least_common_multiple)
@@ -44,42 +43,6 @@ class UI:
         print("Private key:")
         print(private_key)
         print()
-
-        return
-
-        plaintext_message = "kultainennoutaja"
-
-        # Message encoded into an integer
-        m = int.from_bytes(plaintext_message.encode("utf-8"))
-
-        if m.bit_length() > BITS:
-            print("message too long")
-            return
-
-        cipher = pow(m, e, n) # m^d % n
-        #
-        decipher = pow(cipher, d, n) # int
-
-        # int -> plaintext
-        bytes = ceil(decipher.bit_length()/8)
-        back_to_plaintext = decipher.to_bytes(bytes).decode("utf-8")
-
-        print()
-        print(m, "->", cipher, "->", decipher)
-        print(plaintext_message, "->", cipher, "->", back_to_plaintext)
-        return
-
-
-
-        #e = 65537 # Common public exponent
-        #d = mod_inverse(e, least_common_multiple)
-
-        public_key = PublicKey(n)
-
-        d = mod_inverse(public_key.exponent, least_common_multiple)
-        private_key = PrivateKey(n, d)
-
-        
 
 
     def encrypt(self):
@@ -144,17 +107,3 @@ class UI:
         print("Decrypted message:")
         print(plaintext_message)
         print()
-        
-
-        return
-
-        int_message = pow(cipher_message, d, n) # cipher^d % n
-        print("int message:", int_message)
-        print("bits:", int_message.bit_length())
-
-
-        bytes = ceil(int_message.bit_length()/8)
-        print("ciphertxt.bit_length():", int_message.bit_length())
-        plaintext_message = int_message.to_bytes(bytes, byteorder='big').decode("utf-8")
-        print("Decrypted message:")
-        print(plaintext_message)
