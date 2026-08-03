@@ -7,7 +7,8 @@ from math import ceil
 
 class UI:
     def __init__(self):
-        pass
+        self.key_length = 512 # 1024
+
 
     def start(self):
         end = False
@@ -26,15 +27,25 @@ class UI:
 
 
     def generate_keys(self):
-        #BITS = 1024
-        BITS = 512 # for testing
-        (p, q) = generate_two_primes(BITS)
-
+        (p, q) = generate_two_primes(self.key_length)
         n = p*q
         least_common_multiple = lcm(p-1, q-1)
 
-        e = 65537
-        d = mod_inverse(e, least_common_multiple)
+        #e = 65537
+        public_key = PublicKey(n)
+
+        d = mod_inverse(public_key.exponent, least_common_multiple)
+        private_key = PrivateKey(n, d)
+
+        print()
+        print("Public key:")
+        print(public_key)
+        print()
+        print("Private key:")
+        print(private_key)
+        print()
+
+        return
 
         plaintext_message = "kultainennoutaja"
 
@@ -46,6 +57,7 @@ class UI:
             return
 
         cipher = pow(m, e, n) # m^d % n
+        #
         decipher = pow(cipher, d, n) # int
 
         # int -> plaintext
@@ -67,12 +79,7 @@ class UI:
         d = mod_inverse(public_key.exponent, least_common_multiple)
         private_key = PrivateKey(n, d)
 
-        print("Public key:")
-        print(public_key)
-        print()
-        print("Private key:")
-        print(private_key)
-        print()
+        
 
 
     def encrypt(self):
@@ -90,18 +97,20 @@ class UI:
                 (n, e) = (None, None)
 
         plaintext_message = input("Message to encrypt: ")
-        utf8_msg = plaintext_message.encode("utf-8")
-        print("utf8:", utf8_msg)
-        int_message = int.from_bytes(utf8_msg, byteorder='big')
-        print("plaintext message encoded to int:", int_message)
+        
+        # Message encoded into an integer
+        m = int.from_bytes(plaintext_message.encode("utf-8"))
 
-        print("bits:", int_message.bit_length())
-        return
+        while m.bit_length() > self.key_length:
+            plaintext_message = input("The message is too long, please give a shorter message: ")
+            m = int.from_bytes(plaintext_message.encode("utf-8"))
 
-        cipher_message = pow(int_message, e, n) # message^d % n
+        cipher_message = pow(m, e, n) # m^d % n
 
+        print()
         print("Encrypted message:")
         print(cipher_message)
+        print()
 
 
     def decrypt(self):
@@ -126,6 +135,18 @@ class UI:
             except ValueError:
                 print("Please give the message as ciphertext")
                 cipher_message = None
+
+        int_message = pow(cipher_message, d, n) # c^d % n
+        bytes = ceil(int_message.bit_length()/8)
+        plaintext_message = int_message.to_bytes(bytes).decode("utf-8")
+
+        print()
+        print("Decrypted message:")
+        print(plaintext_message)
+        print()
+        
+
+        return
 
         int_message = pow(cipher_message, d, n) # cipher^d % n
         print("int message:", int_message)
