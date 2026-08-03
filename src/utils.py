@@ -11,7 +11,7 @@ def gcd(a, b):
 
 # Least common multiple
 def lcm(a, b):
-    return int(abs(a*b)/gcd(a, b))
+    return int(abs(a*b)//gcd(a, b))
 
 
 # Modular multiplicative inverse, a variant of the extended euclidean algorithm

@@ -39,4 +39,3 @@ class TestUtils(unittest.TestCase):
             result = mod_inverse(n, m)
             self.assertGreater(result, 0)
             self.assertLess(result, m)
-

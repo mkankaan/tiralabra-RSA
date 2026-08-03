@@ -1,7 +1,7 @@
 from prime_generator import generate_two_primes
 from classes.public_key import PublicKey
 from classes.private_key import PrivateKey
-from utils import lcm, mod_inverse
+from utils import mod_inverse, lcm
 from math import ceil
 
 
@@ -27,15 +27,37 @@ class UI:
 
     def generate_keys(self):
         #BITS = 1024
-        BITS = 16 # for testing
+        BITS = 512 # for testing
         (p, q) = generate_two_primes(BITS)
-
-        # for testing
-        #p = 39511
-        #q = 5701
 
         n = p*q
         least_common_multiple = lcm(p-1, q-1)
+
+        e = 65537
+        d = mod_inverse(e, least_common_multiple)
+
+        plaintext_message = "kultainennoutaja"
+
+        # Message encoded into an integer
+        m = int.from_bytes(plaintext_message.encode("utf-8"))
+
+        if m.bit_length() > BITS:
+            print("message too long")
+            return
+
+        cipher = pow(m, e, n) # m^d % n
+        decipher = pow(cipher, d, n) # int
+
+        # int -> plaintext
+        bytes = ceil(decipher.bit_length()/8)
+        back_to_plaintext = decipher.to_bytes(bytes).decode("utf-8")
+
+        print()
+        print(m, "->", cipher, "->", decipher)
+        print(plaintext_message, "->", cipher, "->", back_to_plaintext)
+        return
+
+
 
         #e = 65537 # Common public exponent
         #d = mod_inverse(e, least_common_multiple)
@@ -50,6 +72,7 @@ class UI:
         print()
         print("Private key:")
         print(private_key)
+        print()
 
 
     def encrypt(self):
@@ -67,10 +90,13 @@ class UI:
                 (n, e) = (None, None)
 
         plaintext_message = input("Message to encrypt: ")
-        int_message = int.from_bytes(plaintext_message.encode("utf-8"))
-        #print("int msg:", int_message)
+        utf8_msg = plaintext_message.encode("utf-8")
+        print("utf8:", utf8_msg)
+        int_message = int.from_bytes(utf8_msg, byteorder='big')
+        print("plaintext message encoded to int:", int_message)
 
         print("bits:", int_message.bit_length())
+        return
 
         cipher_message = pow(int_message, e, n) # message^d % n
 
@@ -103,8 +129,11 @@ class UI:
 
         int_message = pow(cipher_message, d, n) # cipher^d % n
         print("int message:", int_message)
+        print("bits:", int_message.bit_length())
+
 
         bytes = ceil(int_message.bit_length()/8)
+        print("ciphertxt.bit_length():", int_message.bit_length())
         plaintext_message = int_message.to_bytes(bytes, byteorder='big').decode("utf-8")
         print("Decrypted message:")
         print(plaintext_message)
