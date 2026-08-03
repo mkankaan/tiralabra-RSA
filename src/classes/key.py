@@ -1,5 +1,5 @@
 class Key:
-    def __init__(self, n, e):
+    def __init__(self, n, e=None):
         self.modulus = n
         self.exponent = e
 

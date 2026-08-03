@@ -1,6 +1,6 @@
 from prime_generator import generate_two_primes
 from utils import lcm, mod_inverse
-from key import Key
+from classes.public_key import PublicKey
 from math import ceil
 
 
@@ -36,17 +36,19 @@ class UI:
         n = p*q
         least_common_multiple = lcm(p-1, q-1)
 
-        e = 65537 # Common public exponent
-        d = mod_inverse(e, least_common_multiple)
+        #e = 65537 # Common public exponent
+        #d = mod_inverse(e, least_common_multiple)
 
-        public_key = Key(n, e)
-        private_key = Key(n, d)
+        #public_key = Key(n, e)
+        #private_key = Key(n, d)
+        public_key = PublicKey(n)
+        #private_key = Key(n)
 
         print("Public key:")
         print(public_key)
         print()
         print("Private key:")
-        print(private_key)
+        #print(private_key)
 
 
     def encrypt(self):
