@@ -1,6 +1,7 @@
 from prime_generator import generate_two_primes
-from utils import lcm, mod_inverse
 from classes.public_key import PublicKey
+from classes.private_key import PrivateKey
+from utils import lcm, mod_inverse
 from math import ceil
 
 
@@ -39,16 +40,16 @@ class UI:
         #e = 65537 # Common public exponent
         #d = mod_inverse(e, least_common_multiple)
 
-        #public_key = Key(n, e)
-        #private_key = Key(n, d)
         public_key = PublicKey(n)
-        #private_key = Key(n)
+
+        d = mod_inverse(public_key.exponent, least_common_multiple)
+        private_key = PrivateKey(n, d)
 
         print("Public key:")
         print(public_key)
         print()
         print("Private key:")
-        #print(private_key)
+        print(private_key)
 
 
     def encrypt(self):
@@ -68,6 +69,8 @@ class UI:
         plaintext_message = input("Message to encrypt: ")
         int_message = int.from_bytes(plaintext_message.encode("utf-8"))
         #print("int msg:", int_message)
+
+        print("bits:", int_message.bit_length())
 
         cipher_message = pow(int_message, e, n) # message^d % n
 
