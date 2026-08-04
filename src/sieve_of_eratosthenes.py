@@ -24,13 +24,3 @@ def small_primes_as_integers(n):
     primes_boolean = sieve_of_eratosthenes(n)
     primes_int = [i for i in range(n) if primes_boolean[i]]
     return primes_int
-
-
-# n = a prime candidate
-# list = a list of numbers (small primes)
-# Return True if n is divisible by any number in the list, otherwise False
-def is_divisible(p, numbers):
-    for n in numbers:
-        if p%n == 0:
-            return True
-    return False

@@ -1,4 +1,4 @@
-from prime_generator import generate_two_primes
+from prime_generator import generate_prime
 from classes.public_key import PublicKey
 from classes.private_key import PrivateKey
 from utils import mod_inverse, lcm
@@ -7,7 +7,7 @@ from math import ceil
 
 class UI:
     def __init__(self):
-        self.key_length = 512 # 1024
+        self.key_length = 1024
 
 
     def start(self):
@@ -27,7 +27,12 @@ class UI:
 
 
     def generate_keys(self):
-        (p, q) = generate_two_primes(self.key_length)
+        p = self.generate_prime(self.key_length)
+        q = self.generate_prime(self.key_length)
+
+        while p == q:
+            q = generate_prime(self.key_length)
+
         n = p*q
         least_common_multiple = lcm(p-1, q-1)
 

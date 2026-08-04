@@ -27,7 +27,7 @@ def miller_rabin(n, k):
         # Check condition 2)
         # Keep squaring x and taking mod n up to s times
         for r in range(s):
-            y = pow(x, 2, n) # x^2 mod n
+            y = (x*x)%n
 
             if y == 1 and x != 1 and x != n-1:
                 return False # Composite
