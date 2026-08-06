@@ -1,5 +1,6 @@
 from key_generator import generate_keys
 from math import ceil
+from encryption import encrypt
 
 
 class UI:
@@ -14,26 +15,34 @@ class UI:
             match user_input.lower():
                 case "g":
                     (public_key, private_key) = generate_keys()
-                    print(public_key, private_key)
+                    print(public_key)
+                    print()
+                    print(private_key)
                 case "e":
-                    #message = input()
-                    # ask message as input
-                    #self.encrypt()
-                    pass
+                    (modulus, exponent, message) = self.get_encryption_inputs()
+                    cipher = encrypt(modulus, exponent, message)
+
+                    print()
+                    print("Encrypted message:")
+                    print(cipher)
+                    print()
                 case "d":
                     # ask cipher as input
                     #cipher = input()
                     #self.decrypt()
                     # tulosta viesti
-                    pass
+                
+                    print()
+                    print("Decrypted message:")
+                    print(message)
+                    print()
                 case _:
                     end = True
 
-    # siirrä
-    def encrypt(self):
+
+    def get_encryption_inputs(self):
         (n, e) = (None, None)
         
-        # will be cleaned up and repetition will be removed
         while not n or not e:
             public_key = input("Recipient's public key: ")
             try:
@@ -44,23 +53,15 @@ class UI:
                 print("Please give a valid key")
                 (n, e) = (None, None)
 
-        plaintext_message = input("Message to encrypt: ")
+        message = input("Message to encrypt:\n")
+        message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
 
+        while message_bits > n.bit_length():
+            message = input("The message is too long, please give a shorter message:\n")
+            message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
         
-        # Message encoded into an integer
-        m = int.from_bytes(plaintext_message.encode("utf-8"))
+        return (n, e, message)
 
-        # testaa max pituus
-        while m.bit_length() > self.key_length:
-            plaintext_message = input("The message is too long, please give a shorter message: ")
-            m = int.from_bytes(plaintext_message.encode("utf-8"))
-
-        cipher_message = pow(m, e, n) # m^d % n
-
-        print()
-        print("Encrypted message:")
-        print(cipher_message)
-        print()
 
     # siirrä
     def decrypt(self):
