@@ -20,7 +20,7 @@ def sieve_of_eratosthenes(n):
 
 
 # Helper function that returns a list of primes up to n as integers
-def small_primes_as_integers(n):
+def primes_up_to(n):
     primes_boolean = sieve_of_eratosthenes(n)
     primes_int = [i for i in range(n) if primes_boolean[i]]
     return primes_int

@@ -1,14 +1,10 @@
-from prime_generator import generate_prime
-from classes.public_key import PublicKey
-from classes.private_key import PrivateKey
-from utils import mod_inverse, lcm
+from key_generator import generate_keys
 from math import ceil
 
 
 class UI:
     def __init__(self):
-        self.key_length = 1024
-
+        pass
 
     def start(self):
         end = False
@@ -17,39 +13,23 @@ class UI:
 
             match user_input.lower():
                 case "g":
-                    self.generate_keys()
+                    (public_key, private_key) = generate_keys()
+                    print(public_key, private_key)
                 case "e":
-                    self.encrypt()
+                    #message = input()
+                    # ask message as input
+                    #self.encrypt()
+                    pass
                 case "d":
-                    self.decrypt()
+                    # ask cipher as input
+                    #cipher = input()
+                    #self.decrypt()
+                    # tulosta viesti
+                    pass
                 case _:
                     end = True
 
-
-    def generate_keys(self):
-        p = self.generate_prime(self.key_length)
-        q = self.generate_prime(self.key_length)
-
-        while p == q:
-            q = generate_prime(self.key_length)
-
-        n = p*q
-        least_common_multiple = lcm(p-1, q-1)
-
-        public_key = PublicKey(n)
-
-        d = mod_inverse(public_key.exponent, least_common_multiple)
-        private_key = PrivateKey(n, d)
-
-        print()
-        print("Public key:")
-        print(public_key)
-        print()
-        print("Private key:")
-        print(private_key)
-        print()
-
-
+    # siirrä
     def encrypt(self):
         (n, e) = (None, None)
         
@@ -65,10 +45,12 @@ class UI:
                 (n, e) = (None, None)
 
         plaintext_message = input("Message to encrypt: ")
+
         
         # Message encoded into an integer
         m = int.from_bytes(plaintext_message.encode("utf-8"))
 
+        # testaa max pituus
         while m.bit_length() > self.key_length:
             plaintext_message = input("The message is too long, please give a shorter message: ")
             m = int.from_bytes(plaintext_message.encode("utf-8"))
@@ -80,7 +62,7 @@ class UI:
         print(cipher_message)
         print()
 
-
+    # siirrä
     def decrypt(self):
         (n, d) = (None, None)
                             

@@ -4,7 +4,7 @@ from random import randrange
 # n = odd prime candidate, n > 2
 # k = level of accuracy (the number of witnesses tested against)
 # Return: False (composite) or True (probably prime)
-def miller_rabin(n, k):
+def miller_rabin(n, k=40):
     # n-1 = (2^s)*d
     (s, d) = factor_powers_of_two(n)
 
@@ -13,7 +13,7 @@ def miller_rabin(n, k):
         a = randrange(2, n-1) # Witness
         
         # For any given 1 < a < n-1, n is a strong probable prime if
-        # one of the conditions is true:
+        # one of these conditions is true:
         # 1) a^d = 1 (mod n)
         # 2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
 
