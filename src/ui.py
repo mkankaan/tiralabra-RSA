@@ -43,9 +43,9 @@ class UI:
         (n, e) = (None, None)
         
         while not n or not e:
-            public_key = input("Recipient's public key:\n")
+            key = input("Recipient's public key:\n")
             try:
-                (n, e) = public_key.split("-")
+                (n, e) = key.split("-")
                 n = int(n)
                 e = int(e)
             except ValueError:
@@ -66,9 +66,9 @@ class UI:
         (n, d) = (None, None)
                             
         while not n or not d:
-            public_key = input("Recipient's private key:\n")
+            key = input("Recipient's private key:\n")
             try:
-                (n, d) = public_key.split("-")
+                (n, d) = key.split("-")
                 n = int(n)
                 d = int(d)
             except ValueError:
