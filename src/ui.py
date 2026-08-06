@@ -1,11 +1,11 @@
 from key_generator import generate_keys
-from math import ceil
-from encryption import encrypt
+from encryption_decryption import encrypt, decrypt
 
 
 class UI:
     def __init__(self):
         pass
+
 
     def start(self):
         end = False
@@ -27,11 +27,9 @@ class UI:
                     print(cipher)
                     print()
                 case "d":
-                    # ask cipher as input
-                    #cipher = input()
-                    #self.decrypt()
-                    # tulosta viesti
-                
+                    (modulus, exponent, message) = self.get_decryption_inputs()
+                    message = decrypt(modulus, exponent, message)
+
                     print()
                     print("Decrypted message:")
                     print(message)
@@ -44,7 +42,7 @@ class UI:
         (n, e) = (None, None)
         
         while not n or not e:
-            public_key = input("Recipient's public key: ")
+            public_key = input("Recipient's public key:\n")
             try:
                 (n, e) = public_key.split("-")
                 n = int(n)
@@ -63,12 +61,11 @@ class UI:
         return (n, e, message)
 
 
-    # siirrä
-    def decrypt(self):
+    def get_decryption_inputs(self):
         (n, d) = (None, None)
                             
         while not n or not d:
-            public_key = input("Recipient's private key: ")
+            public_key = input("Recipient's private key:\n")
             try:
                 (n, d) = public_key.split("-")
                 n = int(n)
@@ -77,21 +74,14 @@ class UI:
                 print("Please give a valid key")
                 (n, d) = (None, None)
 
-        cipher_message = None
+        cipher = None
 
-        while not cipher_message:
-            cipher_message = input("Message to decrypt: ")
+        while not cipher:
+            cipher = input("Message to decrypt:\n")
             try:
-                cipher_message = int(cipher_message)
+                cipher = int(cipher)
             except ValueError:
                 print("Please give the message as ciphertext")
-                cipher_message = None
+                cipher = None
 
-        int_message = pow(cipher_message, d, n) # c^d % n
-        bytes = ceil(int_message.bit_length()/8)
-        plaintext_message = int_message.to_bytes(bytes).decode("utf-8")
-
-        print()
-        print("Decrypted message:")
-        print(plaintext_message)
-        print()
+        return (n, d, cipher)
