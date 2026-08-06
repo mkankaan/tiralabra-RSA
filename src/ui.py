@@ -20,7 +20,16 @@ class UI:
                     print()
                     print(private_key)
                 case "e":
-                    (modulus, exponent, message) = self.get_encryption_inputs()
+                    print("Recipient's public key:")
+                    (modulus, exponent) = self.get_user_key()
+                    message = input("Message to encrypt:\n")
+                    message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
+
+                    # check if message is blank
+
+                    while message_bits > modulus.bit_length():
+                        message = input("The message is too long, please give a shorter message:\n")
+                        message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
                     cipher = encrypt(modulus, exponent, message)
 
                     print()
@@ -28,8 +37,19 @@ class UI:
                     print(cipher)
                     print()
                 case "d":
-                    (modulus, exponent, message) = self.get_decryption_inputs()
-                    message = decrypt(modulus, exponent, message)
+                    print("Recipient's private key:")
+                    (modulus, exponent) = self.get_user_key()
+                    cipher = None
+                    
+                    while not cipher:
+                        cipher = input("Message to decrypt:\n")
+                        try:
+                            cipher = int(cipher)
+                        except ValueError:
+                            print("Please give the message as ciphertext")
+                            cipher = None
+                    
+                    message = decrypt(modulus, exponent, cipher)
 
                     print()
                     print("Decrypted message:")
@@ -39,50 +59,17 @@ class UI:
                     end = True
 
 
-    def get_encryption_inputs(self):
-        (n, e) = (None, None)
+    def get_user_key(self):
+        (mod, exp) = (None, None)
         
-        while not n or not e:
-            key = input("Recipient's public key:\n")
+        while not mod or not exp:
+            key = input()
             try:
-                (n, e) = key.split("-")
-                n = int(n)
-                e = int(e)
+                (mod, exp) = key.split("-")
+                mod = int(mod)
+                exp = int(exp)
             except ValueError:
-                print("Please give a valid key")
-                (n, e) = (None, None)
+                print("Please give a valid key:")
+                (mod, exp) = (None, None)
 
-        message = input("Message to encrypt:\n")
-        message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
-
-        while message_bits > n.bit_length():
-            message = input("The message is too long, please give a shorter message:\n")
-            message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
-        
-        return (n, e, message)
-
-
-    def get_decryption_inputs(self):
-        (n, d) = (None, None)
-                            
-        while not n or not d:
-            key = input("Recipient's private key:\n")
-            try:
-                (n, d) = key.split("-")
-                n = int(n)
-                d = int(d)
-            except ValueError:
-                print("Please give a valid key")
-                (n, d) = (None, None)
-
-        cipher = None
-
-        while not cipher:
-            cipher = input("Message to decrypt:\n")
-            try:
-                cipher = int(cipher)
-            except ValueError:
-                print("Please give the message as ciphertext")
-                cipher = None
-
-        return (n, d, cipher)
+        return (mod, exp)

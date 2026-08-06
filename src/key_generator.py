@@ -4,13 +4,13 @@ from math import gcd, lcm
 from key import Key
 
 
-MAX_SMALL_PRIME = 3989
+MAX_SMALL_PRIME = 3990
 KEY_LENGTH = 1024
 PUBLIC_EXPONENT = 65537 # Common public exponent
 
 
 def generate_keys():
-    small_primes = primes_up_to(MAX_SMALL_PRIME)
+    small_primes = primes_up_to(MAX_SMALL_PRIME) # Sieve of Eratosthenes
     
     p = generate_prime(KEY_LENGTH, small_primes)
     q = generate_prime(KEY_LENGTH, small_primes)
