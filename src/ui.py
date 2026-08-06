@@ -14,6 +14,7 @@ class UI:
 
             match user_input.lower():
                 case "g":
+                    print("Generating keys, please wait...")
                     (public_key, private_key) = generate_keys()
                     print(public_key)
                     print()

@@ -1,12 +1,12 @@
 from sieve_of_eratosthenes import primes_up_to
 from prime_generator import generate_prime
 from math import gcd, lcm
-from classes.public_key import PublicKey
-from classes.private_key import PrivateKey
+from key import Key
 
 
 MAX_SMALL_PRIME = 3989
 KEY_LENGTH = 1024
+PUBLIC_EXPONENT = 65537 # Common public exponent
 
 
 def generate_keys():
@@ -21,10 +21,10 @@ def generate_keys():
     n = p*q
     least_common_multiple = lcm(p-1, q-1)
 
-    public_key = PublicKey(n)
+    public_key = Key(n, PUBLIC_EXPONENT)
 
-    d = mod_inverse(public_key.exponent, least_common_multiple)
-    private_key = PrivateKey(n, d)
+    d = mod_inverse(PUBLIC_EXPONENT, least_common_multiple)
+    private_key = Key(n, d)
 
     return (public_key, private_key)
 
