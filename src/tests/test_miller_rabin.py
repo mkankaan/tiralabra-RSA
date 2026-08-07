@@ -1,7 +1,8 @@
 import unittest
 from miller_rabin import factor_powers_of_two
 
-class TestUtils(unittest.TestCase):
+
+class TestMillerRabin(unittest.TestCase):
     def setUp(self):
         self.numbers = [58303, 82459, 71037, 43337, 85451, 12557, 46609, 681547, 876263, 528897, 13, 41,
                            73580281023602955967]
@@ -21,6 +22,9 @@ class TestUtils(unittest.TestCase):
                             (1, 36790140511801477983)]
 
 
+        # todo: add test cases for large values
+
+
     def test_factor_powers_of_two_returns_correct_pair(self):
         for i in range(len(self.numbers)):
             (s, d) = self.correct_pairs[i]
@@ -35,6 +39,6 @@ class TestUtils(unittest.TestCase):
 
 
     def test_factor_powers_of_two_d_always_odd(self):
-        for i in range(301, 500, 2):
+        for i in range(3, 500, 2):
             d = factor_powers_of_two(i)[1]
             self.assertNotEqual(d%2, 0)

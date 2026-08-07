@@ -37,9 +37,6 @@ def mod_inverse(n, m):
     if gcd(n, m) != 1:
         return None
 
-    #if m == 1:
-    #    return 0
-
     m_0 = m # Initial value of the modulus
     (x, y) = (1, 0)
 

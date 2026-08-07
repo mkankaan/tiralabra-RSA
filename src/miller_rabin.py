@@ -51,8 +51,4 @@ def factor_powers_of_two(n):
         s += 1
         result = result >> 1
 
-    #while result % 2 == 0:
-    #    s += 1
-    #    result = n >> s
-
     return (s, result)
