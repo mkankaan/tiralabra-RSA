@@ -1,6 +1,7 @@
 import unittest
-from prime_generator import is_prime
+from prime_generator import generate_prime, is_prime
 from tests.small_primes import small_primes
+from sympy import isprime
 
 
 class TestPrimeGenerator(unittest.TestCase):
@@ -42,5 +43,12 @@ class TestPrimeGenerator(unittest.TestCase):
             for p in self.large_composites:
                 self.assertFalse(is_prime(p, small_primes))
 
-    def test_generate_primes(self):
-          pass
+
+    # Test prime generation with SymPy's isprime() method
+    # (Note that SymPy's primality checking is also probabilistic, not accurate)
+    def test_generate_prime(self):
+        bits = 1024
+
+        for i in range(10):
+            test_prime = generate_prime(bits, small_primes)
+            self.assertTrue(isprime(test_prime))
