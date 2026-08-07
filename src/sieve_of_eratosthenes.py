@@ -4,7 +4,7 @@ from math import floor, sqrt
 # Returns a list of primes up to n
 def sieve_of_eratosthenes(n):
     if n < 2:
-        return
+        return []
     
     primes = [True]*(n+1)
     primes[0] = False
@@ -12,8 +12,8 @@ def sieve_of_eratosthenes(n):
 
     for i in range(2, floor(sqrt(n))+1):
         if primes[i]:
-            for j in range(pow(i, 2), n+1, i):
+            for j in range(i*i, n+1, i):
                 primes[j] = False
 
-    primes_list = [i for i in range(n) if primes[i]]
+    primes_list = [i for i in range(n+1) if primes[i]]
     return primes_list

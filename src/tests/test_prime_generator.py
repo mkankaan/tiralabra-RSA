@@ -35,8 +35,8 @@ class TestPrimeGenerator(unittest.TestCase):
 
 
     def test_is_prime_returns_correct_result_if_small_composite(self):
-                for p in self.small_composites:
-                    self.assertFalse(is_prime(p, small_primes))
+        for p in self.small_composites:
+            self.assertFalse(is_prime(p, small_primes))
 
 
     def test_is_prime_returns_correct_result_if_large_composite(self):
