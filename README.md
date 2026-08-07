@@ -1,6 +1,7 @@
 # RSA
 
 [![CI](https://github.com/mkankaan/tiralabra-RSA/actions/workflows/main.yml/badge.svg)](https://github.com/mkankaan/tiralabra-RSA/actions/workflows/main.yml)
+[![codecov](https://codecov.io/gh/mkankaan/tiralabra-RSA/graph/badge.svg?token=VFUOD84J1C)](https://codecov.io/gh/mkankaan/tiralabra-RSA)
 
 Python implementation of RSA
 
