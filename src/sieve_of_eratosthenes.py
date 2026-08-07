@@ -1,8 +1,7 @@
 from math import floor, sqrt
 
 
-# n = upper bound for the list of small primes
-# Returns a boolean list corresponding to the primality of each index
+# Returns a list of primes up to n
 def sieve_of_eratosthenes(n):
     if n < 2:
         return
@@ -16,11 +15,5 @@ def sieve_of_eratosthenes(n):
             for j in range(pow(i, 2), n+1, i):
                 primes[j] = False
 
-    return primes
-
-
-# Helper function that returns a list of primes up to n as integers
-def primes_up_to(n):
-    primes_boolean = sieve_of_eratosthenes(n)
-    primes_int = [i for i in range(n) if primes_boolean[i]]
-    return primes_int
+    primes_list = [i for i in range(n) if primes[i]]
+    return primes_list
