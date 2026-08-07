@@ -8,15 +8,15 @@ The project requires Python >= 3.12 and Poetry >= 2.0. Run the following command
 Install dependencies:
 
 ```
-$ poetry install
+poetry install
 ```
 
 Start the application:
 ```
-$ poetry run python3 src/index.py
+poetry run python3 src/index.py
 ```
 
-## <a name="usage"></a> How to use the application
+## <a name="usage"></a> How to run the application
 
 Select **g** to generate keys, **e** to encrypt or **d** to decrypt text.
 
@@ -39,10 +39,10 @@ Select **g** to generate keys, **e** to encrypt or **d** to decrypt text.
 Tests can be run with:
 
 ```
-$ poetry run pytest
+poetry run pytest
 ```
 
 View coverage report:
 ```
-$ poetry run coverage report -m
+poetry run coverage report -m
 ```
