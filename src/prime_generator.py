@@ -16,7 +16,7 @@ def generate_prime(bits, small_primes):
 def is_prime(n, small_primes):
     # Check if n is divisible by any small prime
     for p in small_primes:
-        if p%n == 0:
+        if n%p == 0:
             return False
 
     return miller_rabin(n)
