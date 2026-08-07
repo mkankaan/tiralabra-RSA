@@ -5,18 +5,17 @@ from key import Key
 
 
 MAX_SMALL_PRIME = 3990
-KEY_LENGTH = 1024
 PUBLIC_EXPONENT = 65537 # Common public exponent
 
 
-def generate_keys():
+def generate_keys(key_length):
     small_primes = sieve_of_eratosthenes(MAX_SMALL_PRIME)
     
-    p = generate_prime(KEY_LENGTH, small_primes)
-    q = generate_prime(KEY_LENGTH, small_primes)
-    
-    while p == q:
-        q = generate_prime(KEY_LENGTH, small_primes)
+    p = generate_prime(key_length, small_primes)
+    q = generate_prime(key_length, small_primes)
+
+    while p == q: # pragma: no cover
+        q = generate_prime(key_length, small_primes)
 
     n = p*q
     least_common_multiple = lcm(p-1, q-1)
