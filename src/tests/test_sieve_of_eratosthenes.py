@@ -1,6 +1,6 @@
 import unittest
 from sieve_of_eratosthenes import sieve_of_eratosthenes
-from tests.small_primes import small_primes
+from tests.primes import small_primes
 
 class TestSieveOfEratosthenes(unittest.TestCase):
     def setUp(self):
