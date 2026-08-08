@@ -18,7 +18,7 @@ disable=raw-checker-failed,
         missing-class-docstring
 
 [FORMAT]
-max-line-length=90
+max-line-length=105
 indent-after-paren=4
 
 [REFACTORING]

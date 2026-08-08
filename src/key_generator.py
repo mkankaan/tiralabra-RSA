@@ -1,6 +1,7 @@
+from math import gcd, lcm
+
 from sieve_of_eratosthenes import sieve_of_eratosthenes
 from prime_generator import generate_prime
-from math import gcd, lcm
 from key import Key
 
 
@@ -10,7 +11,7 @@ PUBLIC_EXPONENT = 65537 # Common public exponent
 
 def generate_keys(key_length):
     small_primes = sieve_of_eratosthenes(MAX_SMALL_PRIME)
-    
+
     p = generate_prime(key_length, small_primes)
     q = generate_prime(key_length, small_primes)
 

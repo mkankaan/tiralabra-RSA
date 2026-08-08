@@ -15,7 +15,7 @@ class UI:
             match user_input.lower():
                 case "g":
                     print("Generating keys, please wait...")
-                    (public_key, private_key) = generate_keys()
+                    (public_key, private_key) = generate_keys(1024)
                     print(public_key)
                     print()
                     print(private_key)
@@ -40,7 +40,7 @@ class UI:
                     print("Recipient's private key:")
                     (modulus, exponent) = self.get_user_key()
                     cipher = None
-                    
+
                     while not cipher:
                         cipher = input("Message to decrypt:\n")
                         try:
@@ -48,7 +48,7 @@ class UI:
                         except ValueError:
                             print("Please give the message as ciphertext")
                             cipher = None
-                    
+
                     message = decrypt(modulus, exponent, cipher)
 
                     print()
@@ -61,7 +61,7 @@ class UI:
 
     def get_user_key(self):
         (mod, exp) = (None, None)
-        
+
         while not mod or not exp:
             key = input()
             try:

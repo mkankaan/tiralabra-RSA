@@ -9,9 +9,9 @@ def miller_rabin(n, k=40):
     (s, d) = factor_powers_of_two(n)
 
     # Generate a random witness and test if common divisors are found, repeat k times
-    for i in range(k):
+    for _ in range(k):
         a = randrange(2, n-1) # Witness
-        
+
         # For any given 1 < a < n-1, n is a strong probable prime if
         # one of these conditions is true:
         # 1) a^d = 1 (mod n)
@@ -20,20 +20,20 @@ def miller_rabin(n, k=40):
         # Check condition 1)
         x = pow(a, d, n)
 
-        if x == 1 or x == n-1:
+        if x in (1, n - 1):
             # a is not a factor of n, continue to the next witness
             continue
 
         # Check condition 2)
         # Keep squaring x and taking mod n up to s times
-        for r in range(s):
+        for _ in range(s):
             y = (x*x)%n
 
             if y == 1 and x != 1 and x != n-1:
                 return False # Composite
 
             x = y
-        
+
         if y != 1:
             return False # Composite
 

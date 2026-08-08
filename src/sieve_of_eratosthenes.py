@@ -5,7 +5,7 @@ from math import floor, sqrt
 def sieve_of_eratosthenes(n):
     if n < 2:
         return []
-    
+
     primes = [True]*(n+1)
     primes[0] = False
     primes[1] = False
