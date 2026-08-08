@@ -1,6 +1,6 @@
 def encrypt(n, e, message):
     if message == "":
-        return None
+        return ""
 
     # Message encoded into an integer
     m = int.from_bytes(message.encode("utf-8"))
@@ -14,7 +14,7 @@ def encrypt(n, e, message):
 
 def decrypt(n, d, cipher):
     if cipher == "":
-        return None
+        return ""
 
     int_message = pow(cipher, d, n) # c^d % n
     message_bytes = (int_message.bit_length()+7)//8

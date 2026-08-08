@@ -6,7 +6,8 @@ class TestMillerRabin(unittest.TestCase):
     def setUp(self):
         self.numbers = [58303, 82459, 71037, 43337, 85451, 12557, 46609, 681547, 876263, 528897, 13, 41,
                            73580281023602955967]
-        
+
+        # (s, d) in n-1 = (2^s)*d
         self.correct_pairs = [(1, 29151),
                             (1, 41229),
                             (2, 17759), 
@@ -25,7 +26,7 @@ class TestMillerRabin(unittest.TestCase):
         # todo: add test cases for large values
 
 
-    def test_factor_powers_of_two_returns_correct_pair(self):
+    def test_factor_powers_of_two_returns_correct_result(self):
         for i in range(len(self.numbers)):
             (s, d) = self.correct_pairs[i]
             self.assertEqual(factor_powers_of_two(self.numbers[i]), (s, d))
