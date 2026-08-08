@@ -27,7 +27,7 @@ class TestPrimeGenerator(unittest.TestCase):
         large_factors_b = self.large_primes[5:]
         # Multiply list items to create composites with large factors
         self.large_composites = [large_factors_a[i]*large_factors_b[i] for i in range(len(large_factors_a))]
-        
+
 
     def test_is_prime_returns_correct_result_if_prime(self):
         for p in self.large_primes:
@@ -49,6 +49,6 @@ class TestPrimeGenerator(unittest.TestCase):
     def test_generate_prime(self):
         bits = 1024
 
-        for i in range(10):
+        for _ in range(10):
             test_prime = generate_prime(bits, small_primes)
             self.assertTrue(isprime(test_prime))
