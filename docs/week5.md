@@ -10,4 +10,6 @@ I started writing the testing and implementation documents. The code needs to be
 
 I would like to ask if the tests are sufficient for the course requirements?
 
+(Edit: [linkki](https://github.com/ARomppainen/sat-solver/issues/1) tekemääni vertaisarviointiin, en ole varma menikö submit läpi Labtoolissa, koska se hävisi kun latasin sivun uudestaan)
+
 Time spent: 12 hours
