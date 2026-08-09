@@ -22,7 +22,7 @@ class TestPrimeGenerator(unittest.TestCase):
 
         self.long_messages = ["987654321",
                          "This is top secret classified information!",
-                         "I need some        space",
+                         "´I need some        space´",
                          "Toistaiseksi ei ole todistettu, että N:n tekijöihinjako olisi ainoa tapa päätellä n c:n perusteella.",
                          "https://fi.wikipedia.org/wiki/RSA#Lähteet, https://fi.wikipedia.org/wiki/Laajennettu_Eukleideen_algoritmi?action=edit&redlink=1"]
 
@@ -63,16 +63,29 @@ class TestPrimeGenerator(unittest.TestCase):
             self.assertEqual(message, decrypted_message)
 
 
-    def test_encryption_returns_none_if_message_too_long(self):
-        # ~2048 bit key
-        (n, e, d) = self.large_keys[0]
+    def test_encryption_succeeds_if_key_and_message_same_length(self):
+        # 63 bits
+        (n, e, d) = self.small_keys[4]
+        # 63 bits
+        message = self.short_messages[0]
 
-        # ~2200 bit message
-        message = """Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Maecenas diam lorem, semper at tortor sed, tincidunt accumsan nunc.
-                    Suspendisse lorem metus, suscipit ut aliquam vehicula, rhoncus rutrum odio.
-                    Suspendisse tincidunt tortor eget quam eleifend, sed malesuada est posuere."""
-        self.assertIsNone(encrypt(n, e, message))
+        encrypted = encrypt(n, e, message)
+        decrypted = decrypt(n, d, encrypted)
+        self.assertEqual(decrypted, message)
+
+
+    def test_encryption_returns_none_if_message_one_bit_too_long(self):
+        # 63 bits
+        (n, e, d) = self.small_keys[4]
+        # 64 bits
+        message = "´´´´"
+        self.assertIsNone(encrypt(n, e, message), message)
+
+
+    def test_encryption_returns_none_if_message_too_long(self):
+        (n, e, d) = self.small_keys[0]
+        message = self.long_messages[0]
+        self.assertIsNone(encrypt(n, e, message), message)
 
 
     def test_encryption_returns_empty_string_if_message_empty(self):
