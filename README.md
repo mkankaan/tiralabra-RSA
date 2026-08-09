@@ -7,7 +7,7 @@ Python implementation of RSA
 
 - [Specifications document](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/specification.md)
 - [Implementation document]()
-- [Testing document]()
+- [Testing document](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/testing.md)
 - [User guide](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/user_guide.md)
     - [Installation](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/user_guide.md#installation)
     - [How to run the application](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/user_guide.md#usage)
