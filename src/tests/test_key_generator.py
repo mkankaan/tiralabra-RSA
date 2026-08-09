@@ -1,5 +1,6 @@
 import unittest
 from key_generator import generate_keys, mod_inverse
+from key import Key
 
 
 class TestKeyGenerator(unittest.TestCase):
@@ -36,16 +37,10 @@ class TestKeyGenerator(unittest.TestCase):
             self.assertEqual(result, self.coprimes_correct_results[i])
 
 
-    def test_mod_inverse_remainder_is_one(self):
-        for i in range(len(self.coprimes)):
-            (n, m) = self.coprimes[i]
-            result = mod_inverse(n, m)
-            self.assertEqual((n*result)%m, 1)
-
-
     def test_mod_inverse_returns_none_if_arguments_not_coprime(self):
         for (n, m) in self.not_coprimes:
             self.assertIsNone(mod_inverse(n, m))
 
 
-    # todo: test key format
+    def test_key_is_in_correct_format(self):
+        self.assertEqual(str(Key(20945652604061795317, 65537)), "20945652604061795317-65537")
