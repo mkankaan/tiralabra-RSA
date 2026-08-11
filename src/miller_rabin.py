@@ -1,29 +1,36 @@
 from random import randrange
 
 
-# n = odd prime candidate, n > 2
-# k = level of accuracy (the number of witnesses tested against)
-# Return: False (composite) or True (probably prime)
 def miller_rabin(n, k=40):
-    # n-1 = (2^s)*d
+    """A test to determine if a number is a probable prime.
+    Generate a given amount of random integers (witnesses) and test if
+    common factors are found.
+
+    For any given witness 1 < a < n-1, n is a strong probable prime
+    if one of these conditions holds:
+
+    1) a^d = 1 (mod n)
+    2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
+
+    Args:
+        n (int): A prime candidate
+        k (int, optional): The amount of witnesses to test. Defaults to 40.
+
+    Returns:
+        bool: False if n is composite, True if n is a probable prime
+    """
+
     (s, d) = factor_powers_of_two(n)
 
-    # Generate a random witness and test if common divisors are found, repeat k times
     for _ in range(k):
         a = randrange(2, n-1) # Witness
-
-        # For any given 1 < a < n-1, n is a strong probable prime if
-        # one of these conditions holds:
-        # 1) a^d = 1 (mod n)
-        # 2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
-
         x = pow(a, d, n)
 
         if x == 1 or x == n-1:
             # Condition 1 holds, continue to the next witness
             continue
 
-        # Keep squaring x and taking mod n up to s times
+        # Keep squaring x (mod n) up to s times
         for _ in range(s):
             x = (x*x)%n
 
@@ -38,9 +45,19 @@ def miller_rabin(n, k=40):
     return True
 
 
-# Factor out the largest power of 2 from n-1
-# Return a tuple (s, d) such that n-1 = (2^s)*d, where s, d > 0 and d is odd
 def factor_powers_of_two(n):
+    """Factor out the largest power of 2 from an integer
+
+    Args:
+        n (int): An odd integer to deconstruct s.t. n-1 = (2^s)*d
+
+    Returns:
+        (tuple): tuple containing:
+        
+            s (int): The powers of 2 in n
+            d (int): The multiplier of 2^s to make n-1
+    """
+
     s = 1
     result = n >> 1 # Right bit shift (division by 2)
 
