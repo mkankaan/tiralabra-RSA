@@ -26,16 +26,17 @@ class UI:
 
                     while not message:
                         message = input("Message to encrypt:\n")
-                        message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
+                        # Message encoded into an integer
+                        message_int = int.from_bytes(message.encode("utf-8"))
 
                         if message == "":
                             print("Please enter a valid message")
                             message = None
-                        elif  message_bits > modulus.bit_length():
+                        elif  message_int.bit_length() > modulus.bit_length():
                             print("The message is too long, please give a shorter message")
                             message = None
 
-                    cipher = encrypt(modulus, exponent, message)
+                    cipher = encrypt(modulus, exponent, message_int)
 
                     print()
                     print("Encrypted message:")
