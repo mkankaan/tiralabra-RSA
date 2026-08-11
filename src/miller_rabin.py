@@ -13,28 +13,25 @@ def miller_rabin(n, k=40):
         a = randrange(2, n-1) # Witness
 
         # For any given 1 < a < n-1, n is a strong probable prime if
-        # one of these conditions is true:
+        # one of these conditions holds:
         # 1) a^d = 1 (mod n)
         # 2) a^[(2^r)*d] = -1 (mod n)     for some 0 <= r < s
 
-        # Check condition 1)
         x = pow(a, d, n)
 
-        if x in (1, n - 1):
-            # a is not a factor of n, continue to the next witness
+        if x == 1 or x == n-1:
+            # Condition 1 holds, continue to the next witness
             continue
 
-        # Check condition 2)
         # Keep squaring x and taking mod n up to s times
         for _ in range(s):
-            y = (x*x)%n
+            x = (x*x)%n
 
-            if y == 1 and x != 1 and x != n-1:
-                return False # Composite
+            if x == n-1:
+                # Condition 2 holds, continue to the next witness
+                continue
 
-            x = y
-
-        if y != 1:
+        if x != 1:
             return False # Composite
 
     # n wasn't proven to be composite, probable prime
