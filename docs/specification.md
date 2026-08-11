@@ -62,3 +62,4 @@ The time complexity of the Extended Euclidean algorithm is similar to the Euclid
 - [GCD, Bezout, and Modular Inverses | The Extended Euclidean Algorithm (YouTube)](https://www.youtube.com/watch?v=YZfPcvbwwvI)
 - [Extended Euclidean Algorithm](https://cp-algorithms.com/algebra/extended-euclid-algorithm.html)
 - [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
+- [Programming With Prime Numbers](https://programmingpraxis.com/wp-content/uploads/2012/09/primenumbers.pdf)
