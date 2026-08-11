@@ -22,14 +22,19 @@ class UI:
                 case "e":
                     print("Recipient's public key:")
                     (modulus, exponent) = self.get_user_key()
-                    message = input("Message to encrypt:\n")
-                    message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
+                    message = None
 
-                    # check if message is blank
-
-                    while message_bits > modulus.bit_length():
-                        message = input("The message is too long, please give a shorter message:\n")
+                    while not message:
+                        message = input("Message to encrypt:\n")
                         message_bits = int.from_bytes(message.encode("utf-8")).bit_length()
+
+                        if message == "":
+                            print("Please enter a valid message")
+                            message = None
+                        elif  message_bits > modulus.bit_length():
+                            print("The message is too long, please give a shorter message")
+                            message = None
+
                     cipher = encrypt(modulus, exponent, message)
 
                     print()
