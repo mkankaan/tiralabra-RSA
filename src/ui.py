@@ -36,7 +36,7 @@ class UI:
                             print("The message is too long, please give a shorter message")
                             message = None
 
-                    cipher = encrypt(modulus, exponent, message_int)
+                    cipher = encrypt(modulus, exponent, message)
 
                     print()
                     print("Encrypted message:")

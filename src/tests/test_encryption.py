@@ -78,7 +78,7 @@ class TestPrimeGenerator(unittest.TestCase):
         # 63 bits
         (n, e, d) = self.small_keys[4]
         # 64 bits
-        message = "´´´´"
+        message = "¤¤¤¤"
         self.assertIsNone(encrypt(n, e, message), message)
 
 

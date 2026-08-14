@@ -45,7 +45,7 @@ def mod_inverse(n, m):
     """Find a modular multiplicative inverse of n (modulo m)
 
     Args:
-        n (int): _description_
+        n (int): The value whose modular multiplicative inverse to find
         m (int): The modulus
 
     Returns:
