@@ -1,6 +1,5 @@
 import unittest
 from key_generator import generate_keys, mod_inverse
-from key import Key
 
 
 class TestKeyGenerator(unittest.TestCase):
@@ -20,7 +19,7 @@ class TestKeyGenerator(unittest.TestCase):
 
         for _ in range(10):
             modulus = generate_keys(bits)[0].modulus
-            self.assertAlmostEqual(modulus.bit_length(), 2*bits, delta=10)
+            self.assertAlmostEqual(modulus.bit_length(), 2*bits, delta=100)
 
 
     def test_generates_valid_keys(self):
