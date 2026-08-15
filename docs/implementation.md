@@ -27,6 +27,17 @@ The keys don't adhere to a real RSA format (which uses Base64 or other encodings
 
 ## Sources
 
-to be added
+- [RSA cryptosystem (Wikipedia)](https://en.wikipedia.org/wiki/RSA_cryptosystem)
+- [Miller-Rabin primality test (Wikipedia)](https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test)
+- [The Use of Miller-Rabin in Testing Prime Numbers in the Rsa Algorithm to Secure Files](https://ioinformatic.org/index.php/JAIEA/article/view/1685/1168)
+- [Miller-Rabin Primality Test (YouTube)](https://www.youtube.com/watch?v=qdylJqXCDGs)
+- [How to Implement the Miller-Rabin Primality Test (YouTube)](https://www.youtube.com/watch?v=-BWTS_1Nxao)
+- [Modular arithmetic (Wikipedia)](https://en.wikipedia.org/wiki/Modular_arithmetic)
+- [The Miller-Rabin Test](https://kconrad.math.uconn.edu/blurbs/ugradnumthy/millerrabin.pdf)
+- [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
+- [GCD, Bezout, and Modular Inverses | The Extended Euclidean Algorithm (YouTube)](https://www.youtube.com/watch?v=YZfPcvbwwvI)
+- [Extended Euclidean Algorithm](https://cp-algorithms.com/algebra/extended-euclid-algorithm.html)
+- [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
+- [Programming With Prime Numbers](https://programmingpraxis.com/wp-content/uploads/2012/09/primenumbers.pdf)
 
 AI was not used in this project.

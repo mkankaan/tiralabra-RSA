@@ -16,12 +16,17 @@ class UI:
                 case "g":
                     print("Generating keys, please wait...")
                     (public_key, private_key) = generate_keys(1024)
+
+                    print("\nPublic key:\n")
                     print(public_key)
                     print()
+                    print("Private key:\n")
                     print(private_key)
+                    print()
                 case "e":
                     print("Recipient's public key:")
                     (modulus, exponent) = self.get_user_key()
+                    print()
                     message = None
 
                     while not message:
@@ -39,12 +44,13 @@ class UI:
                     cipher = encrypt(modulus, exponent, message)
 
                     print()
-                    print("Encrypted message:")
+                    print("Encrypted message:\n")
                     print(cipher)
                     print()
                 case "d":
                     print("Recipient's private key:")
                     (modulus, exponent) = self.get_user_key()
+                    print()
                     cipher = None
 
                     while not cipher:
@@ -58,7 +64,7 @@ class UI:
                     message = decrypt(modulus, exponent, cipher)
 
                     print()
-                    print("Decrypted message:")
+                    print("Decrypted message:\n")
                     print(message)
                     print()
                 case _:
