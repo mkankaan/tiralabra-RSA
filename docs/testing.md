@@ -40,6 +40,6 @@ Encryption is tested with a small set of messages that aim to represent realisti
 
 ## <a name="coverage"></a> Test coverage report
 
-![A screenshot of the test coverage report](/coverage.png)
+![A screenshot of the test coverage report](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/coverage.png)
 
 Test coverage was measured with the Coverage library.
