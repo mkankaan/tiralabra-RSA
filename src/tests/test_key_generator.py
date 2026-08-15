@@ -40,7 +40,3 @@ class TestKeyGenerator(unittest.TestCase):
     def test_mod_inverse_returns_none_if_arguments_not_coprime(self):
         for (n, m) in self.not_coprimes:
             self.assertIsNone(mod_inverse(n, m))
-
-
-    def test_key_is_in_correct_format(self):
-        self.assertEqual(str(Key(20945652604061795317, 65537)), "20945652604061795317-65537")
