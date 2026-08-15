@@ -1,10 +1,10 @@
 # Testing
 
-(in progress)
-
 ## Unit tests
 
-Unit tests were done with Pytest. Each function was unit tested except Miller-Rabin (see reasons below). The unit tests aim to resemble real use cases and also cover edge cases. Encryption and decryption were tested using standard 2048-bit keys and also shorter 64-bit keys.
+Unit testing was done with Pytest. Each function was unit tested except Miller-Rabin (see reasons below). The unit tests aim to resemble real use cases and also cover edge cases.
+
+Encryption and decryption were tested using standard 2048-bit keys and also shorter 64-bit keys. The tests mainly use the standard public exponent 65537 but some tests use a different exponent.
 
 ### Testing primality
 
@@ -23,19 +23,23 @@ The [large primes](https://github.com/mkankaan/tiralabra-RSA/blob/main/src/tests
 - [[9]](https://t5k.org/curios/page.php?number_id=1090) (1178 bits)
 - [[10]](https://t5k.org/curios/page.php?number_id=6892) (1179 bits)
 
-I also ran these numbers by SymPy but didn't include it in the automated tests.
+I also checked these numbers with SymPy's isprime() beforehand but didn't include it in the automated tests.
 
-(*) It's worth noting that this method is only accurate for numbers up to 2^64. For larger numbers SymPy uses similar probabilistic methods as the ones implemented in this project. However, it utilises a set of specifically selected bases with no known counterexamples and additional primality checks to Miller-Rabin. Miller-Rabin has an error rate of (1/4)^k which nears 0 as the number of rounds *k* increases. That is, it can determine for certain if a number is composite, but not prime. So even in the very rare case that my code falsely identifies a composite as prime, there might not technically be anything wrong with my implementation.
+(*) It's worth noting that this method is only accurate for numbers up to 2^64. For larger numbers, SymPy uses similar probabilistic methods as the ones implemented in this project. However, it utilises a set of specifically selected bases with no known counterexamples and additional primality checks to Miller-Rabin. Miller-Rabin has an error rate of (1/4)^k which nears 0 as the number of rounds *k* increases. That is, it can determine for certain if a number is composite, but not prime. So even in the very rare case that my code falsely identifies a composite as prime (possibly disagreeing with SymPy and causing the tests to fail), there might still technically not be anything wrong with the implementation.
 
 ## What has not been tested
 
-There is no UI testing.
+The UI hasn't been tested.
 
-There are no separate unit tests for Miller-Rabin because that is covered by the is_prime() function for large values. From the test coverage you can see that Miller-Rabin is also covered. 
+There are no separate unit tests for Miller-Rabin because that is covered by the is_prime() function for large values. From the [test coverage](#coverage) you can see that Miller-Rabin is fully covered. 
 
-Encryption is tested with a small set of messages that aim to be representative of basic sentences and include special characters. The encoding is done by Python's part so more comprehensive tests weren't deemed necessary.
+Encryption is tested with a small set of messages that aim to represent realistic use cases and include special characters. The encoding is done by Python's part so more comprehensive tests weren't deemed necessary.
 
-Performance hasn't been tested because it depends on many factors. Hundreds of prime candidates may need to be generated before a prime is found, and each candidate goes through up to 40 rounds of Miller-Rabin.
+<a name="performance"></a>No tools were used to measure performance because it wouldn't really have given any useful information. Hundreds of numbers may need to be tested before a prime is found and up to 40 rounds of Miller-Rabin are performed on each one, which is the slowest and computationally heaviest part of the program and relies completely on RNG.
 
 
-## Test coverage
+## <a name="coverage"></a> Test coverage report
+
+![A screenshot of the test coverage report](/coverage.png)
+
+Test coverage was measured with the Coverage library.
