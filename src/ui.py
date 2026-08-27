@@ -63,6 +63,12 @@ class UI:
 
                     message = decrypt(modulus, exponent, cipher)
 
+                    if not message:
+                        print()
+                        print("Unable to decrypt the message. Make sure to enter a valid private key and ciphertext.")
+                        print()
+                        continue
+
                     print()
                     print("Decrypted message:\n")
                     print(message)
