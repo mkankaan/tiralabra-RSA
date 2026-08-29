@@ -1,4 +1,4 @@
-import unittest, pytest
+import unittest
 from encryption_decryption import encrypt, decrypt
 
 
