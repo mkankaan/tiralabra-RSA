@@ -4,6 +4,7 @@ from typing import NamedTuple
 class Key(NamedTuple):
     """A class to represent an RSA key.
     """
+
     modulus: int
     exponent: int
 

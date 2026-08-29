@@ -1,7 +1,6 @@
 from math import gcd, lcm
 
-from sieve_of_eratosthenes import sieve_of_eratosthenes
-from prime_generator import generate_prime
+from prime_generator import sieve_of_eratosthenes, generate_prime
 from key import Key
 
 

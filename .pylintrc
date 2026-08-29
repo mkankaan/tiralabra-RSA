@@ -19,7 +19,7 @@ disable=raw-checker-failed,
         consider-using-in
 
 [FORMAT]
-max-line-length=120
+max-line-length=100
 indent-after-paren=4
 
 [REFACTORING]

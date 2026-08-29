@@ -1,5 +1,5 @@
 import unittest
-from sieve_of_eratosthenes import sieve_of_eratosthenes
+from prime_generator import sieve_of_eratosthenes
 from tests.primes import small_primes
 
 class TestSieveOfEratosthenes(unittest.TestCase):

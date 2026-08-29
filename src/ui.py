@@ -2,6 +2,8 @@ from key_generator import generate_keys
 from encryption_decryption import encrypt, decrypt
 
 
+# pylint: disable=line-too-long
+
 class UI:
     def __init__(self):
         pass
@@ -18,11 +20,9 @@ class UI:
                     (public_key, private_key) = generate_keys(1024)
 
                     print("\nPublic key:\n")
-                    print(public_key)
-                    print()
+                    print(public_key, "\n")
                     print("Private key:\n")
-                    print(private_key)
-                    print()
+                    print(private_key, "\n")
                 case "e":
                     print("Recipient's public key:")
                     (modulus, exponent) = self.get_user_key()
@@ -35,18 +35,16 @@ class UI:
                         message_int = int.from_bytes(message.encode("utf-8"))
 
                         if message == "":
-                            print("Please enter a valid message")
+                            print("Please enter a valid message.")
                             message = None
                         elif  message_int.bit_length() > modulus.bit_length():
-                            print("The message is too long, please give a shorter message")
+                            print("\nThe message is too long, please give a shorter message.")
                             message = None
 
                     cipher = encrypt(modulus, exponent, message)
 
-                    print()
-                    print("Encrypted message:\n")
-                    print(cipher)
-                    print()
+                    print("\nEncrypted message:\n")
+                    print(cipher, "\n")
                 case "d":
                     print("Recipient's private key:")
                     (modulus, exponent) = self.get_user_key()
@@ -58,21 +56,17 @@ class UI:
                         try:
                             cipher = int(cipher)
                         except ValueError:
-                            print("Please give the message as ciphertext")
+                            print("Please give the message as ciphertext.")
                             cipher = None
 
                     message = decrypt(modulus, exponent, cipher)
 
                     if not message:
-                        print()
-                        print("Unable to decrypt the message. Make sure to enter a valid private key and ciphertext.")
-                        print()
+                        print("\nUnable to decrypt the message. Make sure to enter a valid private key and ciphertext.\n")
                         continue
 
-                    print()
-                    print("Decrypted message:\n")
-                    print(message)
-                    print()
+                    print("\nDecrypted message:\n")
+                    print(message, "\n")
                 case _:
                     end = True
 
