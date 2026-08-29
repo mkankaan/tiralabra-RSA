@@ -3,6 +3,7 @@ from random import randrange
 
 def miller_rabin(n, k=40):
     """A test to determine if a number is a probable prime.
+    
     Generate a given amount of random integers (witnesses) and test if
     common factors are found.
 
@@ -46,10 +47,10 @@ def miller_rabin(n, k=40):
 
 
 def factor_powers_of_two(n):
-    """Factor out the largest power of 2 from an integer
+    """Factor out the largest power of 2 from an integer.
 
     Args:
-        n (int): An odd integer to deconstruct s.t. n-1 = (2^s)*d
+        n (int): An odd integer to deconstruct such that n-1 = (2^s)*d
 
     Returns:
         (tuple): tuple containing:

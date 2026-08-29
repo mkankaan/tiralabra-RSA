@@ -17,7 +17,7 @@ def generate_prime(bits, small_primes):
 
     p = getrandbits(bits)
 
-    while not is_prime(p, small_primes): # pragma: no cover
+    while not is_prime(p, small_primes):
         p = getrandbits(bits)
 
     return p
@@ -26,8 +26,8 @@ def generate_prime(bits, small_primes):
 def is_prime(n, small_primes):
     """Determine if a number is prime.
     
-    First check divisibility by small primes, if no factors are found
-    then check primality with the Miller-Rabin algorithm.
+    First check divisibility by small primes, if no small
+    prime factors are found then run the Miller-Rabin test.
 
     Args:
         n (int): A prime candidate
@@ -44,8 +44,16 @@ def is_prime(n, small_primes):
     return miller_rabin(n)
 
 
-# Returns a list of primes up to n
 def sieve_of_eratosthenes(n):
+    """Generates a list of prime numbers by sieving out multiples.
+
+    Args:
+        n (int): The upper bound for the primes to list (inclusive)
+
+    Returns:
+        list[int]: A list of prime numbers
+    """
+
     if n < 2:
         return []
 

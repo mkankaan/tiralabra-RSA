@@ -2,7 +2,7 @@ def encrypt(n, e, message):
     """Converts a plaintext message into ciphertext.
 
     Converts the message string into an integer, then performs
-    modular exponentiation with regards to the RSA public key components
+    modular exponentiation with regards to the public key components
     passed as input.
 
     Args:
@@ -31,7 +31,7 @@ def decrypt(n, d, cipher):
     """Converts a ciphertext message into plaintext.
 
     Performs modular exponentiation on the ciphertext with regards to the
-    RSA private key components passed as input. Then converts the resulting
+    private key components passed as input. Then converts the resulting
     integer into the original plaintext message.
 
     Args:
@@ -48,6 +48,7 @@ def decrypt(n, d, cipher):
 
     try:
         message = int_message.to_bytes(message_bytes).decode("utf-8")
-        return message
     except UnicodeDecodeError:
         return None
+
+    return message

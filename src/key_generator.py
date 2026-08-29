@@ -4,12 +4,12 @@ from prime_generator import sieve_of_eratosthenes, generate_prime
 from key import Key
 
 
-MAX_SMALL_PRIME = 3990
+MAX_SMALL_PRIME = 3990 # The maximum divisor when testing primality by simple divison
 PUBLIC_EXPONENT = 65537 # Common public exponent
 
 
 def generate_keys(key_length):
-    """Generate a pair of RSA keys
+    """Generate a pair of RSA keys.
 
     Args:
         key_length (int): The key length in bits
