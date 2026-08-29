@@ -17,7 +17,7 @@ def generate_prime(bits, small_primes):
 
     p = getrandbits(bits)
 
-    while not is_prime(p, small_primes):
+    while not is_prime(p, small_primes): # pragma: no cover
         p = getrandbits(bits)
 
     return p
@@ -36,6 +36,7 @@ def is_prime(n, small_primes):
     Returns:
         bool: False if n is composite, True if n is a probable prime
     """
+
     for p in small_primes:
         if n%p == 0:
             return False

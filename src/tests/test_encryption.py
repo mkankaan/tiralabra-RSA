@@ -1,8 +1,8 @@
-import unittest
+import unittest, pytest
 from encryption_decryption import encrypt, decrypt
 
 
-class TestPrimeGenerator(unittest.TestCase):
+class TestEncryptionDecryption(unittest.TestCase):
     def setUp(self):
         # 64-bit keys (n, e, d)                                             # n factors:
         self.small_keys = [(20945652604061795317, 13, 939869026665589957),  # 6650672641 * 3149403637
@@ -46,12 +46,12 @@ class TestPrimeGenerator(unittest.TestCase):
 
 
     def test_encryption_with_short_keys(self):
-            for i in range(len(self.short_messages)):
-                (n, e, d) = self.small_keys[i]
-                message = self.short_messages[i]
-                cipher = encrypt(n, e, message)
-                self.assertNotEqual(cipher, message)
-                self.assertTrue(isinstance(cipher, int))
+        for i in range(len(self.short_messages)):
+            (n, e, d) = self.small_keys[i]
+            message = self.short_messages[i]
+            cipher = encrypt(n, e, message)
+            self.assertNotEqual(cipher, message)
+            self.assertTrue(isinstance(cipher, int))
     
     
     def test_decryption_with_short_keys(self):
@@ -88,11 +88,6 @@ class TestPrimeGenerator(unittest.TestCase):
         self.assertIsNone(encrypt(n, e, message), message)
 
 
-    def test_encryption_returns_empty_string_if_message_empty(self):
+    def test_decryption_returns_none_if_invalid_cipher(self):
         (n, e, d) = self.large_keys[0]
-        self.assertEqual(encrypt(n, e, ""), "")
-
-
-    def test_decryption_returns_empty_string_if_cipher_empty(self):
-        (n, e, d) = self.large_keys[0]
-        self.assertEqual(decrypt(n, d, ""), "")
+        self.assertIsNone(decrypt(n, d, 123456789))

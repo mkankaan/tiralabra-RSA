@@ -43,15 +43,11 @@ def decrypt(n, d, cipher):
         str: The ciphertext decrypted into plaintext
     """
 
-    if cipher == "":
-        return ""
-
     int_message = pow(cipher, d, n) # c^d % n
     message_bytes = (int_message.bit_length()+7)//8
 
     try:
         message = int_message.to_bytes(message_bytes).decode("utf-8")
+        return message
     except UnicodeDecodeError:
         return None
-
-    return message
