@@ -61,7 +61,7 @@ def mod_inverse(n, m):
     # Initial coefficients of x and y in the equation n*x + m*y = gcd(n, m) (Bézout's identity)
     (x, y) = (1, 0)
 
-    # Steps of the extended Euclidean algorithm
+    # Steps of the Extended Euclidean algorithm
     while n > 1:
         q = n//m
         (n, m) = (m, n%m)
