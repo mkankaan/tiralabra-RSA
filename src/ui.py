@@ -75,7 +75,7 @@ class UI:
         (mod, exp) = (None, None)
 
         while not mod or not exp:
-            key = input().strip()
+            key = input()
             try:
                 (mod, exp) = key.split("-")
                 mod = int(mod)
