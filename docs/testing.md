@@ -1,4 +1,4 @@
-# Testing
+# Testing document
 
 ## Unit tests
 
