@@ -16,9 +16,11 @@ Modules:
 - **miller_rabin.py** - Contains the Miller-Rabin algorithm and a helper function for deconstructing an integer into powers of two.
 - **encryption_decryption.py** - Contains the functionality for converting a plaintext message into ciphertext and vice versa.
 
-## Time and space complexity, Big O analysis
+## Time complexity, Big O analysis
 
 The Sieve of Eratosthenes runs in O(n log (log n)) [(explained here)](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week6.md)
+
+The iterative Extended Euclidean algorithm runs in O(log min(a, b)) time due to the repeated division of the two inputs *a* and *b* until the remainder becomes 0, which depends on the smaller one of them. This is the same as the time complexity of the basic Euclidean algorithm since it has no extra steps.
 
 As for the runtime complexity of Miller-Rabin, I found conflicting opinions without much explanation. Sources claim the time complexity to be anywhere between O(log² n) and O(log⁴ n).
 
@@ -59,4 +61,5 @@ Sources for runtime complexity:
 - [Four primality testing algorithms](https://arxiv.org/pdf/0801.3840)
 - [On a Modification of the Agrawal-Biswas Primality Test](https://arxiv.org/pdf/1810.09651)
 - [Complexity of exponentiation](https://www.cs.toronto.edu/~guerzhoy/180f16/lectures/W12/lec2/ComplExp.html)
+- [Time Complexity of Euclid’s Algorithm](https://www.baeldung.com/cs/euclid-time-complexity)
 
