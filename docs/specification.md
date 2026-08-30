@@ -37,7 +37,7 @@ For the modular multiplicative inverse (finding *d* for the private key)
 
 (More might be added, these were just some of the algorithms I came across in my research.)
 
-## Time complexity
+## <a name="complexity"></a> Time complexity
 
 In my research I found that Miller-Rabin runs in polynomial time at worst, making it efficient.
 

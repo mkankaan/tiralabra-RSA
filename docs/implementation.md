@@ -18,12 +18,25 @@ Modules:
 
 ## Time and space complexity, Big O analysis
 
-(to be added)
+The Sieve of Eratosthenes runs in O(n log (log n)) [(explained here)](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week6.md)
 
+As for the runtime complexity of Miller-Rabin, I found conflicting opinions without much explanation. Sources claim the time complexity to be anywhere between O(log² n) and O(log⁴ n).
+
+The [original paper](https://www.sciencedirect.com/science/article/pii/S0022000076800438) by Gary L. Miller states that his deterministic algorithm runs in O(log⁴ n) time proportional to the bit length of the prime candidate *n*. Rabin later modified his test to make it probabilistic, resulting in the Miller-Rabin test we have today. Because probabilistic primality tests are faster than deterministic, it is safe to say that the runtime is less than O(log⁴ n).
+
+The outer loop is repeated *k* times and the inner loop is repeated up to *s* times, where *s* < log n and the constant *k* is the number of witnesses and can be omitted from the runtime analysis.
+
+Generating a random witness *a* is O(1) and doesn't effect the overall runtime.  a<sup>d</sup> (mod n) is O(log d) which is within O(log n). Repeated squaring is O(log² n). This is how we arrive at O(log³ n), repeated *k* times.
+
+Some sources treat *s* as a constant independent from *n*, although it is derived from *n*. This way of thinking would give the runtime O(ks log² n) = O(log² n), which would explain the different opinions.
 
 ## Improvements
 
 The keys don't adhere to a real RSA format (which uses Base64 or other encodings) but instead the keys are large integers with the modulus and exponent simply separated by "-". Real RSA keys are shorter in length, despite having the same bit length. In this application, the keys that the user has to work with are quite long and can be annoying (and error-prone) to copy-paste. Usability could be improved with some kind of login system, where each key is tied to a username. That would remove the hassle of having to manually pass the keys around.
+
+## Use of AI
+
+AI was not used in this project.
 
 ## Sources
 
@@ -40,4 +53,10 @@ The keys don't adhere to a real RSA format (which uses Base64 or other encodings
 - [Modular Multiplicative Inverse](https://www.geeksforgeeks.org/dsa/multiplicative-inverse-under-modulo-m/)
 - [Programming With Prime Numbers](https://programmingpraxis.com/wp-content/uploads/2012/09/primenumbers.pdf)
 
-AI was not used in this project.
+Sources for runtime complexity:
+
+- [Riemann's hypothesis and tests for primality](https://www.sciencedirect.com/science/article/pii/S0022000076800438)
+- [Four primality testing algorithms](https://arxiv.org/pdf/0801.3840)
+- [On a Modification of the Agrawal-Biswas Primality Test](https://arxiv.org/pdf/1810.09651)
+- [Complexity of exponentiation](https://www.cs.toronto.edu/~guerzhoy/180f16/lectures/W12/lec2/ComplExp.html)
+

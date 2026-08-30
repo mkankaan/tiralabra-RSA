@@ -1,9 +1,9 @@
 # User guide
 
-## <a name="installation"></a> Installation
+## <a name="installation"></a> Installation (Linus/MacOS/Windows)
 
 
-The project requires Python >= 3.12 and Poetry >= 2.0. Run the following commands in the root of the project folder. Replace "python3" if Python is installed under a different name.
+The project requires Python >= 3.12 and [Poetry](https://python-poetry.org/) >= 2.0. Run the following commands in the root of the project folder. Replace "python3" if Python is installed under a different name.
 
 Install dependencies:
 
