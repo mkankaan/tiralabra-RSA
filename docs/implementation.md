@@ -18,7 +18,7 @@ Modules:
 
 ## Time complexity, Big O analysis
 
-The Sieve of Eratosthenes runs in O(n log (log n)) [(explained here)](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/week6.md)
+The Sieve of Eratosthenes runs in O(n log (log n)) [(explained here)](https://github.com/mkankaan/tiralabra-RSA/blob/main/docs/specification.md#complexity)
 
 The iterative Extended Euclidean algorithm (used to find the modular multiplicative inverse) runs in O(log min(n, m)) time due to the repeated division of the two inputs *n* and *m*, which depends on the smaller one of them. It has the same time complexity as the basic Euclidean algorithm since there are no extra steps.
 
