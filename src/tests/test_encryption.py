@@ -88,9 +88,9 @@ class TestEncryptionDecryption(unittest.TestCase):
         self.assertIsNone(encrypt(n, e, message), message)
 
 
-    def test_encryption_returns_empty_string_if_message_empty(self):
+    def test_encryption_returns_none_if_message_empty(self):
         (n, e, d) = self.large_keys[0]
-        self.assertEqual(encrypt(n, e, ""), "")
+        self.assertIsNone(encrypt(n, e, ""))
 
 
     def test_decryption_returns_none_if_invalid_cipher(self):

@@ -12,15 +12,13 @@ def encrypt(n, e, message):
 
     Returns:
         int: The message converted into ciphertext
+            or None if the message is blank or too long
     """
-
-    if message == "":
-        return ""
 
     # Message encoded into an integer
     m = int.from_bytes(message.encode("utf-8"))
 
-    if m.bit_length() > n.bit_length():
+    if message == "" or m.bit_length() > n.bit_length():
         return None
 
     cipher = pow(m, e, n) # m^e % n
